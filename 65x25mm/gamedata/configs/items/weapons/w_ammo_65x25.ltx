@@ -1,0 +1,107 @@
+[ammo_6.5x25_apds]:ammo_base
+        GroupControlSection	= spawn_group
+        discovery_dependency =
+        $spawn			= "weapons\ammo\ammo_9x19_fmj" ; option for Level Editor
+        class			= AMMO_S
+        cform           = skeleton
+        visual          = dynamics\weapons\wpn_ammo\ammo_65x25_apds.ogf
+        $prefetch 		= 64
+
+        cost			= 3250
+
+        box_size		= 15
+
+        inv_name		= ammo-6.5x25-apds
+        inv_name_short	= ammo-6.5x25-apds_s
+        description		= ammo-6.5x25-apds_descr
+        inv_weight		= 0.1
+
+        icons_texture		        = ui\ui_ammo_65x25
+        inv_grid_width              = 2
+        inv_grid_height             = 1
+        inv_grid_x                  = 0
+        inv_grid_y                  = 0
+
+        k_hit           = 0.45
+        k_disp			= 0.66
+        k_impulse		= 0.42
+        k_ap			= 0.59
+        tracer_color_ID	= 2
+        wm_size         = 0.011
+        k_air_resistance = 0.3
+        k_bullet_speed	= 1.4
+
+        tier                                     = 5
+
+
+[ammo_6.5x25_het]:ammo_base
+        GroupControlSection	= spawn_group
+        discovery_dependency =
+        $spawn			= "weapons\ammo\ammo_9x19_fmj" ; option for Level Editor
+        class			= AMMO_S
+        cform           = skeleton
+        visual          = dynamics\weapons\wpn_ammo\ammo_65x25_het.ogf
+        $prefetch 		= 64
+
+        cost			= 1850
+
+        box_size		= 15
+
+        inv_name		= ammo-6.5x25-het
+        inv_name_short	= ammo-6.5x25-het_s
+        description		= ammo-6.5x25-het_descr
+        inv_weight		= 0.11
+
+        icons_texture		        = ui\ui_ammo_65x25
+        inv_grid_width              = 2
+        inv_grid_height             = 1
+        inv_grid_x                  = 0
+        inv_grid_y                  = 1
+
+        k_hit           = 0.9
+        k_disp			= 0.66
+        k_impulse		= 0.38
+        k_ap			= 0.24
+        tracer_color_ID	= 2
+        wm_size         = 0.022
+        k_air_resistance = 0.8
+        k_bullet_speed	= 1.225
+
+        tier                                     = 4
+
+
+[ammo_6.5x25_hp]:ammo_base
+        GroupControlSection	= spawn_group
+        discovery_dependency =
+        $spawn			= "weapons\ammo\ammo_9x19_fmj" ; option for Level Editor
+        class			= AMMO_S
+        cform           = skeleton
+        visual          = dynamics\weapons\wpn_ammo\ammo_65x25_hp.ogf
+        $prefetch 		= 64
+
+        cost			= 2200
+
+        box_size		= 15
+
+        inv_name		= ammo-6.5x25-hp
+        inv_name_short	= ammo-6.5x25-hp_s
+        description		= ammo-6.5x25-hp_descr
+        inv_weight		= 0.11
+
+        icons_texture		        = ui\ui_ammo_65x25
+        inv_grid_width              = 2
+        inv_grid_height             = 1
+        inv_grid_x                  = 0
+        inv_grid_y                  = 2
+
+        k_hit           = 0.9
+        k_disp			= 0.66
+        k_impulse		= 0.38
+        k_ap			= 0.125
+        impair			= 1.25
+        tracer_color_ID	= 2
+        wm_size         = 0.022
+        k_air_resistance = 0.8
+        k_bullet_speed	= 1.225
+
+        tier                                     = 4

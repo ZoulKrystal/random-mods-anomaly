@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<string_table>
+	<string id="st_mag_mp7_4.6x30_fmj">
+		<text>40-round 4.6x30 MP7 Magazine</text>
+	</string>
+	<string id="st_mag_mp7_4.6x30_fmj_descr">
+		<text>
+            40-round extended magazine for the MP7 PDW. Due to the somewhat rare nature of 4.6x30 rounds, it is rarely seen fully loaded in the zone.
+		</text>
+	</string>
+</string_table>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<string_table>
+	<string id="st_mag_m82_50_bmg">
+		<text>10-round .50 BMG M82 Magazine</text>
+	</string>
+	<string id="st_mag_m82_50_bmg_descr">
+		<text>
+			Standard Barrett M82 magazine with capacity for 10 rounds. The first stalker to bring such a monster of a weapon discarded it after running out of ammunition; enterprising traders saw the opportunity to import the cartridge since then.
+		</text>
+	</string>
+</string_table>

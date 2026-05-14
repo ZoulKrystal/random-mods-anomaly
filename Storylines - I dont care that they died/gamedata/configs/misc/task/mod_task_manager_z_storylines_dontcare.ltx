@@ -1,0 +1,242 @@
+![ah_redirect_to_kovalev_quest] 
+!condlist_1
+
+![ah_redirect_to_markov_quest] 
+!condlist_1
+
+![ah_redirect_to_pirogov_quest] 
+!condlist_1
+
+![ah_redirect_to_chernov_quest] 
+!condlist_1
+
+![ah_redirect_to_juk_quest] 
+!condlist_1
+
+![ah_redirect_to_vorobushkin_quest] 
+!condlist_1
+
+![ah_redirect_to_skabinsky_quest] 
+!condlist_1
+
+![ah_fail_skabinsky_quest] 
+!condlist_1
+
+;-------------------------------------------
+;----------- Ковалев 1 квест
+;-------------------------------------------
+![ah_kovalev_quest1] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_o1) =remove_item(af_ah_g1) =remove_item(af_ah_e1)% fail
+!condlist_3
+
+
+![ah_bol_o1_kovalev_quest1] 
+condlist_1 = {+ahi_kovalev_1_quest_end} fail
+!condlist_2
+![ah_bol_g1_kovalev_quest1] 
+condlist_1 = {+ahi_kovalev_1_quest_end} fail
+!condlist_2
+![ah_bol_e1_kovalev_quest1] 
+condlist_1 = {+ahi_kovalev_1_quest_end} fail
+!condlist_2
+![ah_kovalev_quest2] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_g1) =remove_item(af_ah_g2) =remove_item(af_ah_h1) =remove_item(kovalev_pda_item)% fail
+!condlist_3
+![ah_agr_pda_kovalev_quest2] 
+condlist_1 = {+ahi_kovalev_2_quest_end} fail
+!condlist_2
+![ah_agr_g1_kovalev_quest2] 
+condlist_1 = {+ahi_kovalev_2_quest_end} fail
+!condlist_2
+![ah_agr_g2_kovalev_quest2]  
+condlist_1 = {+ahi_kovalev_2_quest_end} fail
+!condlist_2
+![ah_agr_h1_kovalev_quest2] 
+condlist_1 = {+ahi_kovalev_2_quest_end} fail
+!condlist_2
+![ah_markov_quest1] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_o1) =remove_item(af_ah_h1) =remove_item(af_ah_g1)% fail
+!condlist_3
+![ah_yan_o1_markov_quest1] 
+condlist_1 = {+ahi_markov_1_quest_end} fail
+!condlist_2
+![ah_yan_h1_markov_quest1] 
+condlist_1 = {+ahi_markov_1_quest_end} fail
+!condlist_2
+![ah_yan_g1_markov_quest1] 
+condlist_1 = {+ahi_markov_1_quest_end} fail
+!condlist_2
+![ah_markov_quest2] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_o1) =remove_item(af_ah_e1) =remove_item(af_ah_e2)% fail
+!condlist_3
+![ah_dt_o1_markov_quest2] 
+condlist_1 = {+ahi_markov_2_quest_end} fail
+!condlist_2
+![ah_dt_e1_markov_quest2] 
+condlist_1 = {+ahi_markov_2_quest_end} fail
+!condlist_2
+![ah_dt_e2_markov_quest2] 
+condlist_1 = {+ahi_markov_2_quest_end} fail
+!condlist_2
+![ah_markov_quest3] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_e1) =remove_item(af_ah_e2) =remove_item(af_ah_g1)% fail
+!condlist_3
+![ah_yan_e1_markov_quest3] 
+condlist_1 = {+ahi_markov_3_quest_end} fail
+!condlist_2
+![ah_yan_e2_markov_quest3] 
+condlist_1 = {+ahi_markov_3_quest_end} fail
+!condlist_2
+![ah_yan_g1_markov_quest3] 
+condlist_1 = {+ahi_markov_3_quest_end} fail
+!condlist_2
+![ah_pirogov_quest1] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_o1) =remove_item(af_ah_o2) =remove_item(af_ah_e1)% fail
+!condlist_3
+![ah_td_o1_pirogov_quest1] 
+condlist_1 = {+ahi_pirogov_1_quest_end} fail
+!condlist_2
+![ah_td_o2_pirogov_quest1] 
+condlist_1 = {+ahi_pirogov_1_quest_end} fail
+!condlist_2
+![ah_td_e1_pirogov_quest1] 
+condlist_1 = {+ahi_pirogov_1_quest_end} fail
+!condlist_2
+![ah_pirogov_quest2] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_g1) =remove_item(af_ah_o1) =remove_item(af_ah_h1)% fail
+!condlist_3
+![ah_kt_g1_pirogov_quest2] 
+condlist_1 = {+ahi_pirogov_2_quest_end} fail
+!condlist_2
+![ah_kt_o1_pirogov_quest2] 
+condlist_1 = {+ahi_pirogov_2_quest_end} fail
+!condlist_2
+![ah_kt_h1_pirogov_quest2] 
+condlist_1 = {+ahi_pirogov_2_quest_end} fail
+!condlist_2
+![ah_pirogov_quest3] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_g1) =remove_item(af_ah_h1) =remove_item(pirogov_pda_item)% fail
+!condlist_3
+![ah_sv_pda_pirogov_quest3] 
+condlist_1 = {+ahi_pirogov_3_quest_end} fail
+!condlist_2
+![ah_sv_g1_pirogov_quest3] 
+condlist_1 = {+ahi_pirogov_3_quest_end} fail
+!condlist_2
+![ah_sv_h1_pirogov_quest3]  
+condlist_1 = {+ahi_pirogov_3_quest_end} fail
+!condlist_2
+![ah_chernov_quest1] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_h1) =remove_item(af_ah_g1) =remove_item(af_ah_o1)% fail
+!condlist_3
+![ah_mil_h1_chernov_quest1] 
+condlist_1 = {+ahi_chernov_1_quest_end} fail
+!condlist_2
+![ah_mil_g1_chernov_quest1] 
+condlist_1 = {+ahi_chernov_1_quest_end} fail
+!condlist_2
+![ah_mil_o1_chernov_quest1] 
+condlist_1 = {+ahi_chernov_1_quest_end} fail
+!condlist_2
+![ah_chernov_quest3] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(strelok_pda_item) =remove_item(af_ah_o1) =remove_item(af_ah_e1)% fail
+!condlist_3
+![ah_les_pda_chernov_quest3] 
+condlist_1 = {+ahi_chernov_3_quest_end} fail
+!condlist_2
+![ah_les_o1_chernov_quest3] 
+condlist_1 = {+ahi_chernov_3_quest_end} fail
+!condlist_2
+![ah_les_e1_chernov_quest3] 
+condlist_1 = {+ahi_chernov_3_quest_end} fail
+!condlist_2
+![ah_chernov_quest4] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_s1)% fail
+!condlist_3
+![ah_chernov_quest5] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_r1) =remove_item(af_ah_r2) =remove_item(af_ah_r3) =remove_item(chernov_pda_item)% fail
+!condlist_3
+![ah_rad_pda_chernov_quest5] 
+condlist_1 = {+ahi_chernov_5_quest_end} fail
+!condlist_2
+![ah_rad_r1_chernov_quest5] 
+condlist_1 = {+ahi_chernov_5_quest_end} fail
+!condlist_2
+![ah_rad_r2_chernov_quest5] 
+condlist_1 = {+ahi_chernov_5_quest_end} fail
+!condlist_2
+![ah_rad_r3_chernov_quest5] 
+condlist_1 = {+ahi_chernov_5_quest_end} fail
+!condlist_2
+![ah_chernov_quest6] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_o1) =remove_item(af_ah_g1)% fail
+!condlist_3
+![ah_mg_o1_chernov_quest6] 
+condlist_1 = {+ahi_chernov_6_quest_end} fail
+!condlist_2
+![ah_mg_g1_chernov_quest6] 
+condlist_1 = {+ahi_chernov_6_quest_end} fail
+!condlist_2
+![ah_juk_quest1] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_g1) =remove_item(af_ah_h1) =remove_item(af_ah_h2)% fail
+!condlist_3
+![ah_up_g1_juk_quest1] 
+condlist_1 = {+ahi_juk_1_quest_end} fail
+!condlist_2
+![ah_up_h1_juk_quest1] 
+condlist_1 = {+ahi_juk_1_quest_end} fail
+!condlist_2
+![ah_up_h2_juk_quest1] 
+condlist_1 = {+ahi_juk_1_quest_end} fail
+!condlist_2
+![ah_juk_quest2] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_e1) =remove_item(af_ah_e2) =remove_item(af_ah_g2)% fail
+!condlist_3
+![ah_up_e1_juk_quest2] 
+condlist_1 = {+ahi_juk_2_quest_end} fail
+!condlist_2
+![ah_up_e2_juk_quest2] 
+condlist_1 = {+ahi_juk_2_quest_end} fail
+!condlist_2
+![ah_up_g2_juk_quest2] 
+condlist_1 = {+ahi_juk_2_quest_end} fail
+!condlist_2
+![ah_juk_quest3] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_g1) =remove_item(af_ah_h1) =remove_item(af_ah_g2) =remove_item(af_ah_e1)% fail
+!condlist_3
+![ah_p_h1_juk_quest3] 
+condlist_1 = {+ahi_juk_3_quest_end} fail
+!condlist_2
+![ah_p_g1_juk_quest3] 
+condlist_1 = {+ahi_juk_3_quest_end} fail
+!condlist_2
+![ah_p_g2_juk_quest3] 
+condlist_1 = {+ahi_juk_3_quest_end} fail
+!condlist_2
+![ah_p_e1_juk_quest3] 
+condlist_1 = {+ahi_juk_3_quest_end} fail
+!condlist_2
+![ah_vorobushkin_quest1] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_h1) =remove_item(af_ah_h2) =remove_item(vorobushkin_pda_item)% fail
+!condlist_3
+![ah_zat_pda_vorobushkin_quest1] 
+condlist_1 = {+ahi_vorobushkin_1_quest_end} fail
+!condlist_2
+![ah_zat_h1_vorobushkin_quest1] 
+condlist_1 = {+ahi_vorobushkin_1_quest_end} fail
+!condlist_2
+![ah_zat_h2_vorobushkin_quest1]  
+condlist_1 = {+ahi_vorobushkin_1_quest_end} fail
+!condlist_2
+![ah_vorobushkin_quest2] 
+condlist_2 = {+ah_quest_cancel} %=remove_item(af_ah_o1) =remove_item(af_ah_g1) =remove_item(af_ah_g2)% fail
+!condlist_3
+![ah_zat_o1_vorobushkin_quest2] 
+condlist_1 = {+ahi_vorobushkin_2_quest_end} fail
+!condlist_2
+![ah_zat_g1_vorobushkin_quest2] 
+condlist_1 = {+ahi_vorobushkin_2_quest_end} fail
+!condlist_2
+![ah_zat_g2_vorobushkin_quest2]  
+condlist_1 = {+ahi_vorobushkin_2_quest_end} fail
+!condlist_2

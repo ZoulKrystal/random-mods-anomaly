@@ -1,0 +1,347 @@
+; ------------------------------------------------------------------------------------------------------
+; Glock
+
+[up_sect_fifthd_glock]
+cost                                     = 1890
+value                                    = +15
+
+condition_shot_dec                       = -0.0002
+condition_queue_shot_dec                 = -0.0002
+misfire_start_prob                       = -0.0013
+misfire_end_prob                         = -0.013
+inv_weight                               = +0.08
+
+[up_sect_fifthe_glock]
+cost                                     = 8755
+value                                    = "6.5x25"
+ammo_class                               = ammo_6.5x25_apds, ammo_6.5x25_het, ammo_6.5x25_hp
+condition_shot_dec                       = +0.0001
+condition_queue_shot_dec                 = +0.0001
+misfire_start_prob                       = 0.0006
+misfire_end_prob                         = 0.006
+
+cam_dispersion                           = -0.034
+cam_dispersion_inc                       = 0.0 ;-0.026
+cam_step_angle_horz                      = -0.022
+
+inv_weight                               = +0.09
+
+[up_fifthd_glock]:up_info_type_a
+scheme_index                             = 1, 8
+effects                                  = up_gr_fifthef_glock
+section                                  = up_sect_fifthd_glock
+
+property                                 = prop_reliability
+
+name                                     = st_up_barp_b1_name
+description                              = st_up_barp_b1_descr
+icon                                     = ui_inGame2_upgrade_Marta_7
+
+[up_fifthe_glock]:up_info_type_a
+scheme_index                             = 2, 4
+effects                                  =
+section                                  = up_sect_fifthe_glock
+
+property                                 = prop_calibre
+
+name                                     = st_up_cal_6525_name
+description                              = st_up_cal_6525_descr
+icon                                     = ui_inGame2_upgrade_Marta_15
+
+![up_gr_fifthcd_glock]
+elements                                 = up_fifthc_glock, up_fifthd_glock
+
+[up_gr_fifthef_glock]
+elements                                 = up_fifthe_glock
+
+
+; ------------------------------------------------------------------------------------------------------
+; Glock Auto
+
+[up_sect_fifthd_glock_auto]
+cost                                     = 1890
+value                                    = +15
+
+condition_shot_dec                       = -0.0002
+condition_queue_shot_dec                 = -0.0002
+misfire_start_prob                       = -0.0013
+misfire_end_prob                         = -0.013
+inv_weight                               = +0.08
+
+[up_sect_fifthe_glock_auto]
+cost                                     = 8755
+value                                    = "6.5x25"
+ammo_class                               = ammo_6.5x25_apds, ammo_6.5x25_het, ammo_6.5x25_hp
+condition_shot_dec                       = +0.0001
+condition_queue_shot_dec                 = +0.0001
+misfire_start_prob                       = 0.0006
+misfire_end_prob                         = 0.006
+
+cam_dispersion                           = -0.034
+cam_dispersion_inc                       = 0.0 ;-0.026
+cam_step_angle_horz                      = -0.022
+
+inv_weight                               = +0.09
+
+[up_fifthd_glock_auto]:up_info_type_a
+scheme_index                             = 1, 8
+effects                                  = up_gr_fifthef_glock_auto
+section                                  = up_sect_fifthd_glock_auto
+
+property                                 = prop_reliability
+
+name                                     = st_up_barp_b1_name
+description                              = st_up_barp_b1_descr
+icon                                     = ui_inGame2_upgrade_Marta_7
+
+[up_fifthe_glock_auto]:up_info_type_a
+scheme_index                             = 2, 4
+effects                                  =
+section                                  = up_sect_fifthe_glock_auto
+
+property                                 = prop_calibre
+
+name                                     = st_up_cal_6525_name
+description                              = st_up_cal_6525_descr
+icon                                     = ui_inGame2_upgrade_Marta_15
+
+![up_gr_fifthcd_glock_auto]
+elements                                 = up_fifthc_glock_auto, up_fifthd_glock_auto
+
+[up_gr_fifthef_glock_auto]
+elements                                 = up_fifthe_glock_auto
+
+
+; ------------------------------------------------------------------------------------------------------
+; Beretta
+
+[up_sect_fifthd_beretta]
+cost                                     = 1890
+value                                    = +15
+
+condition_shot_dec                       = -0.0002
+condition_queue_shot_dec                 = -0.0002
+misfire_start_prob                       = -0.0013
+misfire_end_prob                         = -0.013
+inv_weight                               = +0.08
+
+[up_sect_fifthe_beretta]
+cost                                     = 8755
+value                                    = "6.5x25"
+ammo_class                               = ammo_6.5x25_apds, ammo_6.5x25_het, ammo_6.5x25_hp
+condition_shot_dec                       = +0.0001
+condition_queue_shot_dec                 = +0.0001
+misfire_start_prob                       = 0.0006
+misfire_end_prob                         = 0.006
+
+cam_dispersion                           = -0.034
+cam_dispersion_inc                       = 0.0 ;-0.026
+cam_step_angle_horz                      = -0.022
+
+inv_weight                               = +0.09
+
+[up_fifthd_beretta]:up_info_type_a
+scheme_index                             = 1, 8
+effects                                  = up_gr_fifthef_beretta
+section                                  = up_sect_fifthd_beretta
+
+property                                 = prop_reliability
+
+name                                     = st_up_barp_b1_name
+description                              = st_up_barp_b1_descr
+icon                                     = ui_inGame2_upgrade_Marta_7
+
+[up_fifthe_beretta]:up_info_type_a
+scheme_index                             = 2, 4
+effects                                  =
+section                                  = up_sect_fifthe_beretta
+
+property                                 = prop_calibre
+
+name                                     = st_up_cal_6525_name
+description                              = st_up_cal_6525_descr
+icon                                     = ui_inGame2_upgrade_Marta_15
+
+![up_gr_fifthcd_beretta]
+elements                                 = up_fifthc_beretta, up_fifthd_beretta
+
+[up_gr_fifthef_beretta]
+elements                                 = up_fifthe_beretta
+
+
+; ------------------------------------------------------------------------------------------------------
+; CZ 75 Auto
+
+[up_sect_fifthd_cz75_auto]
+cost                                     = 1890
+value                                    = +15
+
+condition_shot_dec                       = -0.0002
+condition_queue_shot_dec                 = -0.0002
+misfire_start_prob                       = -0.0013
+misfire_end_prob                         = -0.013
+inv_weight                               = +0.08
+
+[up_sect_fifthe_cz75_auto]
+cost                                     = 8755
+value                                    = "6.5x25"
+ammo_class                               = ammo_6.5x25_apds, ammo_6.5x25_het, ammo_6.5x25_hp
+condition_shot_dec                       = +0.0001
+condition_queue_shot_dec                 = +0.0001
+misfire_start_prob                       = 0.0006
+misfire_end_prob                         = 0.006
+
+cam_dispersion                           = -0.034
+cam_dispersion_inc                       = 0.0 ;-0.026
+cam_step_angle_horz                      = -0.022
+
+inv_weight                               = +0.09
+
+[up_fifthd_cz75_auto]:up_info_type_a
+scheme_index                             = 1, 8
+effects                                  = up_gr_fifthef_cz75_auto
+section                                  = up_sect_fifthd_cz75_auto
+
+property                                 = prop_reliability
+
+name                                     = st_up_barp_b1_name
+description                              = st_up_barp_b1_descr
+icon                                     = ui_inGame2_upgrade_Marta_7
+
+[up_fifthe_cz75_auto]:up_info_type_a
+scheme_index                             = 2, 4
+effects                                  =
+section                                  = up_sect_fifthe_cz75_auto
+
+property                                 = prop_calibre
+
+name                                     = st_up_cal_6525_name
+description                              = st_up_cal_6525_descr
+icon                                     = ui_inGame2_upgrade_Marta_15
+
+![up_gr_fifthcd_cz75_auto]
+elements                                 = up_fifthc_cz75_auto, up_fifthd_cz75_auto
+
+[up_gr_fifthef_cz75_auto]
+elements                                 = up_fifthe_cz75_auto
+
+
+; ------------------------------------------------------------------------------------------------------
+; CZ 75
+
+[up_sect_fifthd_cz75]
+cost                                     = 1890
+value                                    = +15
+
+condition_shot_dec                       = -0.0002
+condition_queue_shot_dec                 = -0.0002
+misfire_start_prob                       = -0.0013
+misfire_end_prob                         = -0.013
+inv_weight                               = +0.08
+
+[up_sect_fifthe_cz75]
+cost                                     = 8755
+value                                    = "6.5x25"
+ammo_class                               = ammo_6.5x25_apds, ammo_6.5x25_het, ammo_6.5x25_hp
+condition_shot_dec                       = +0.0001
+condition_queue_shot_dec                 = +0.0001
+misfire_start_prob                       = 0.0006
+misfire_end_prob                         = 0.006
+
+cam_dispersion                           = -0.034
+cam_dispersion_inc                       = 0.0 ;-0.026
+cam_step_angle_horz                      = -0.022
+
+inv_weight                               = +0.09
+
+[up_fifthd_cz75]:up_info_type_a
+scheme_index                             = 1, 8
+effects                                  = up_gr_fifthef_cz75
+section                                  = up_sect_fifthd_cz75
+
+property                                 = prop_reliability
+
+name                                     = st_up_barp_b1_name
+description                              = st_up_barp_b1_descr
+icon                                     = ui_inGame2_upgrade_Marta_7
+
+[up_fifthe_cz75]:up_info_type_a
+scheme_index                             = 2, 4
+effects                                  =
+section                                  = up_sect_fifthe_cz75
+
+property                                 = prop_calibre
+
+name                                     = st_up_cal_6525_name
+description                              = st_up_cal_6525_descr
+icon                                     = ui_inGame2_upgrade_Marta_15
+
+![up_gr_fifthcd_cz75]
+elements                                 = up_fifthc_cz75, up_fifthd_cz75
+
+[up_gr_fifthef_cz75]
+elements                                 = up_fifthe_cz75
+
+
+; ------------------------------------------------------------------------------------------------------
+; MP5
+
+[up_sect_fifthd_mp5]
+cost                                     = 1890
+value                                    = +15
+
+condition_shot_dec                       = -0.0002
+condition_queue_shot_dec                 = -0.0002
+misfire_start_prob                       = -0.0013
+misfire_end_prob                         = -0.013
+inv_weight                               = +0.08
+
+[up_sect_fifthe_mp5]
+cost                                     = 9869
+value                                    = "6.5x25"
+ammo_class                               = ammo_6.5x25_apds, ammo_6.5x25_het, ammo_6.5x25_hp
+condition_shot_dec                       = +0.0001
+condition_queue_shot_dec                 = +0.0001
+misfire_start_prob                       = 0.0006
+misfire_end_prob                         = 0.006
+
+cam_dispersion                           = -0.034
+cam_dispersion_inc                       = 0.0 ;-0.026
+cam_step_angle_horz                      = -0.022
+
+inv_weight                               = +0.09
+
+[up_fifthd_mp5]:up_info_type_a
+scheme_index                             = 1, 8
+effects                                  = up_gr_fifthef_mp5
+section                                  = up_sect_fifthd_mp5
+
+property                                 = prop_reliability
+
+name                                     = st_up_stk_a2_name
+description                              = st_up_stk_a2_descr
+icon                                     = ui_inGame2_upgrade_Gadyuka_5_13
+
+[up_fifthe_mp5]:up_info_type_a
+scheme_index                             = 2, 4
+effects                                  =
+section                                  = up_sect_fifthe_mp5
+
+property                                 = prop_calibre
+
+name                                     = st_up_cal_6525_name
+description                              = st_up_cal_6525_descr
+icon                                     = ui_inGame2_upgrade_Gadyuka_5_18
+
+![up_gr_fifthcd_mp5]
+elements                                 = up_fifthc_mp5, up_fifthd_mp5
+
+[up_gr_fifthef_mp5]
+elements                                 = up_fifthe_mp5
+
+
+; ------------------------------------------------------------------------------------------------------
+; MP5SD
+
+;![up_gr_fifthcd_mp5sd]
+;elements                                 = up_fifthc_mp5sd, up_fifthd_mp5

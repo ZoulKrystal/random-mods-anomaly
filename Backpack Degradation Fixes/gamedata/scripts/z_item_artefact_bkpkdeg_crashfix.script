@@ -1,0 +1,54 @@
+hit_to_section = item_artefact.hit_to_section
+equipement_damaging = item_artefact.equipement_damaging
+mul = item_artefact.mul
+
+item_artefact.actor_on_before_hit = function(s_hit)
+	if (s_hit.power <= 0) then
+		return
+	end
+
+	local cond_loss = 0
+	local hit_absorbation_sect, imm_sect
+	
+	-- Damage active artefacts according to damage type and their immunities
+	if game_difficulties.get_eco_factor("arty_degradation") then
+		db.actor:iterate_belt( function(owner, arte)
+			cond_loss = 0
+			hit_absorbation_sect = ini_sys:r_string_ex(arte:section(),"hit_absorbation_sect")
+			
+			if (hit_absorbation_sect) then
+				imm_sect = hit_to_section[s_hit.type]
+				cond_loss = imm_sect and ini_sys:r_float_ex(hit_absorbation_sect,imm_sect) or 0
+				printf(" %s %s ", imm_sect, cond_loss)
+				if (cond_loss > 0) then
+					cond_loss = (s_hit.power * imm_mul[imm_sect] * cond_loss)
+
+					print_dbg("Artefact degradation |  artefact: %s - hit_power: %s - cond_loss: %s", arte:name(), s_hit.power, cond_loss)
+					local temp_cond = arte:condition() - (cond_loss*ini_sys:r_float_ex(arte:section(),"degrade_rate",1))
+					temp_cond = temp_cond > 0.01 and temp_cond or 0.01
+					arte:set_condition(temp_cond)
+				end
+			end
+		end)
+	end
+	
+	-- Damage backpack
+	local backpack = db.actor:item_in_slot(13)
+	if (backpack) and game_difficulties.get_eco_factor("bkpk_degradation") then
+		cond_loss = 0
+		hit_absorbation_sect = ini_sys:r_string_ex(backpack:section(),"immunities_sect")
+		if (hit_absorbation_sect) and (equipement_damaging[hit_to_section[s_hit.type]]) then
+			imm_sect = hit_to_section[s_hit.type]
+			if imm_sect == "light_burn_immunity" then imm_sect = "burn_immunity" end
+			cond_loss = imm_sect and ini_sys:r_float_ex(hit_absorbation_sect,imm_sect)*0.5 or 0
+			cond_loss = cond_loss * s_hit.power
+			if (cond_loss > 0) then
+
+				item_artefact.print_dbg("Backpack degradation |  artefact: %s - hit_power: %s - cond_loss: %s", backpack:name(), s_hit.power, cond_loss)
+				local temp_cond = backpack:condition() - (cond_loss*ini_sys:r_float_ex(backpack:section(),"degrade_rate",1))
+				temp_cond = temp_cond > 0.01 and temp_cond or 0.01
+				backpack:set_condition(temp_cond)
+			end
+		end
+	end
+end
