@@ -1,0 +1,133 @@
+-- Thanks Aoldri!
+-- also do NOT review this code I'm fucking terrible at this
+
+local common = animation_common
+
+local fired_empty = false
+local ammocache = 0
+
+function on_before_key_press(key, bind, dis, flags)
+    local item = db.actor:active_item()
+    if IsWeapon(item) then
+        if (bind == key_bindings.kWPN_RELOAD and item:get_state() ~= 7) then
+            ammocache = item:get_ammo_in_magazine()
+            is_first_round = true
+            firstodd = false
+        end
+        if (bind == key_bindings.kWPN_FIRE) then
+            local ammocount = item:get_ammo_in_magazine()
+            if (ammocount <= 0 and ammocount ~= nil) then
+                if (fired_empty == false and actor_menu.last_mode == 0 and item:get_state() == 0 and common.has_animation(item:section(), "anm_empty_fire")) then
+                    item:switch_state(4)
+                    fired_empty = true
+                end
+            end
+        end
+    end
+end
+
+
+-- _firemodeX (0 = automatic. 1 = single, 2 = two-burst, 3 = three-burst, etc)
+local function anm_firemode(anm_table, item)
+    if IsWeapon(item) then
+        local section = item:section()
+        local wpn = item:cast_Weapon()
+        local firemode = clamp(wpn:GetFireMode(), 0, 6969)
+    
+        --[[ rpm
+        local customrpm = SYS_GetParam(2, section, "rpm_custom")
+        if not (customrpm == nil) then
+            local rpm = SYS_GetParam(2, section, "rpm")
+            if (firemode == 0) then
+                wpn:SetRPM(60/customrpm)
+                else
+                wpn:SetRPM(60/rpm)
+            end
+        end
+        ]]
+
+        local suffix = "_firemode" .. firemode
+    
+        common.mutate_anim(anm_table, suffix, section)
+    end
+end
+
+
+-- _first
+local function anm_loadfirst(anm_table, item)
+    if IsWeapon(item) then
+        local section = item:section()
+        local ammocount = item:get_ammo_in_magazine()
+        if (item:get_state() == 7 and ammocache == ammocount) then
+            local suffix = "_first"
+            common.mutate_anim(anm_table, suffix, section)
+        end
+    end
+end
+
+
+-- _no_mag
+local function anm_nomag(anm_table, item)
+    local section = item:section()
+    -- from utjan magcheck
+    local is_supported, has_mag_data
+    if magazine_binder then
+        is_supported = magazine_binder.is_supported_weapon(section)
+        has_mag_data = magazine_binder.get_mag_loaded(item:id())
+    end
+    if is_supported and not has_mag_data then
+        common.mutate_anim(anm_table, "_no_mag", section)
+    end
+end
+
+
+-- _ammoodd or _ammoeven / first load will always be odd
+local function anm_ammoparity(anm_table, item)
+    if IsWeapon(item) then
+        local section = item:section()
+        local ammocount = item:get_ammo_in_magazine()
+
+        if (ammocache % 2 == 0 and ammocache >= 2) then
+            ammocount = ammocount + 1
+        end
+
+        local suffix = "_null"
+        
+        if (ammocount % 2 == 0) then
+            suffix = "_ammoeven"
+        else
+            suffix = "_ammoodd"
+        end
+
+        common.mutate_anim(anm_table, suffix, section)
+    end
+end
+
+
+-- anm_empty_fire
+local function anm_emptyfire(anm_table, item)
+    if (fired_empty==true and item:get_state() == 4) then -- double check just in case
+        anm_table.anm_name = "anm_empty_fire"
+    end
+    fired_empty = false
+end
+
+-- _lowered
+local function anm_lowered(anm_table, item)
+    local section = item:section()
+
+    if (game.actor_weapon_lowered()) then
+        common.mutate_anim(anm_table, "_lowered", section)
+    end
+end
+
+function on_game_start()
+    RegisterScriptCallback("on_before_key_press", on_before_key_press)
+end
+
+common.add_anim_mutator(anm_firemode, 5.0)
+common.add_anim_mutator(anm_nomag, 1.5)
+common.add_anim_mutator(anm_ammoparity, 5.0)
+common.add_anim_mutator(anm_loadfirst, 6.0)
+common.add_anim_mutator(anm_emptyfire, 1.0)
+common.add_anim_mutator(anm_lowered, 1.5)
