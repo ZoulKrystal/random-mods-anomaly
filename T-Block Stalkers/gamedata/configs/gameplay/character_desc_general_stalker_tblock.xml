@@ -1,0 +1,27 @@
+<specific_character id="sim_default_stalker_0_default_35" team_default = "1">
+#include "gameplay\profiles\character_desc_stalker_0.xml"
+    <icon>ui_inGame2_neutral_1</icon>
+    <snd_config>characters_voice\human\stalker_1\</snd_config>
+    <visual>actors\stalker_neutral\stalker_neutral1g</visual>
+</specific_character>
+
+<specific_character id="sim_default_stalker_0_default_36" team_default = "1">
+#include "gameplay\profiles\character_desc_stalker_0.xml"
+    <icon>ui_inGame2_neutral_1_mask</icon>
+    <snd_config>characters_voice\human\stalker_1\</snd_config>
+    <visual>actors\stalker_neutral\stalker_neutral1g_mask</visual>
+</specific_character>
+    
+<specific_character id="sim_default_stalker_0_default_37" team_default = "1">
+#include "gameplay\profiles\character_desc_stalker_0.xml"
+    <icon>ui_inGame2_neutral_1_gas</icon>
+    <snd_config>characters_voice\human\stalker_3\</snd_config>
+    <visual>actors\stalker_neutral\stalker_neutral1g_gas</visual>
+</specific_character>
+    
+<specific_character id="sim_default_stalker_0_default_38" team_default = "1">
+#include "gameplay\profiles\character_desc_stalker_0.xml"
+    <icon>ui_inGame2_neutral_1</icon>
+    <snd_config>characters_voice\human\stalker_1\</snd_config>
+    <visual>actors\stalker_neutral\stalker_neutral1g_mas2</visual>
+</specific_character>
