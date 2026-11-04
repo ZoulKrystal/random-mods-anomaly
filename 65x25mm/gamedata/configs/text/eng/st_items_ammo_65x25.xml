@@ -11,28 +11,38 @@
 	<string id="ammo-6.5x25-apds">
 		<text>6.5x25 mm APDS rounds</text>
 	</string>
-	<string id="ammo-6.5x25-apds_descr">
-		<text>The 6.5x25 CBJ Armor Piercing Discarding Sabot is the cartridge variant with the highest performance regarding armor piercing capability and long range ballistics. It has a tungsten core projectile enclosed in a discarding plastic sabot.\n \n%c[d_purple] • %c[ui_gray_2] Highest pierced armour class: %c[ui_gray_1]IV\n%c[d_purple] • %c[ui_gray_2] Tissue damage rating: %c[ui_gray_1]low</text>
-	</string>
 	<string id="ammo-6.5x25-apds_s">
 		<text>6.5x25 APDS</text>
+	</string>
+	<string id="ammo-6.5x25-apds_descr">
+		<text>The 6.5x25 CBJ Armor Piercing Discarding Sabot is the cartridge variant with the highest performance regarding armor piercing capability and long range ballistics. It has a tungsten core projectile enclosed in a discarding plastic sabot.\n \n%c[d_purple] • %c[ui_gray_2] Highest pierced armour class: %c[ui_gray_1]IV\n%c[d_purple] • %c[ui_gray_2] Tissue damage rating: %c[ui_gray_1]low</text>
 	</string>
 	<string id="ammo-6.5x25-het">
 		<text>6.5x25 mm HET rounds</text>
 	</string>
-	<string id="ammo-6.5x25-het_descr">
-		<text>The 6.5x25 CBJ High Energy Transfer has a full caliber solid brass projectile with a hollow base. The bullet is highly effective against targets with moderate levels of protection within a range of about 50m, after which lethality is rapidly reduced.\n \n%c[d_purple] • %c[ui_gray_2] Highest pierced armour class: %c[ui_gray_1]IIIA\n%c[d_purple] • %c[ui_gray_2] Tissue damage rating: %c[ui_gray_1]medium - high</text>
-	</string>
 	<string id="ammo-6.5x25-het_s">
 		<text>6.5x25 HET</text>
+	</string>
+	<string id="ammo-6.5x25-het_descr">
+		<text>The 6.5x25 CBJ High Energy Transfer has a full caliber solid brass projectile with a hollow base. The bullet is highly effective against targets with moderate levels of protection within a range of about 50m, after which lethality is rapidly reduced.\n \n%c[d_purple] • %c[ui_gray_2] Highest pierced armour class: %c[ui_gray_1]IIIA\n%c[d_purple] • %c[ui_gray_2] Tissue damage rating: %c[ui_gray_1]medium - high</text>
 	</string>
 	<string id="ammo-6.5x25-hp">
 		<text>6.5x25 mm HP rounds</text>
 	</string>
+	<string id="ammo-6.5x25-hp_s">
+		<text>6.5x25 HP</text>
+	</string>
 	<string id="ammo-6.5x25-hp_descr">
 		<text>The 6.5x25 CBJ HP has a full caliber monolithic copper projectile with a hollow point. Within the lethal range of around 80m it is very effective against non protected targets, but beyond this range it quickly looses velocity and energy.\n \n%c[d_purple] • %c[ui_gray_2] Highest pierced armour class: %c[ui_gray_1]I\n%c[d_purple] • %c[ui_gray_2] Tissue damage rating: %c[ui_gray_1]high</text>
 	</string>
-	<string id="ammo-6.5x25-hp_s">
-		<text>6.5x25 HP</text>
+
+	<string id="ammo_new_6.5x25_apds_descr">
+		<text>The 6.5x25 CBJ Armor Piercing Discarding Sabot is the cartridge variant with the highest performance regarding armor piercing capability and long range ballistics. It has a tungsten core projectile enclosed in a discarding plastic sabot.</text>
+	</string>
+	<string id="ammo_new_6.5x25_het_descr">
+		<text>The 6.5x25 CBJ High Energy Transfer has a full caliber solid brass projectile with a hollow base. The bullet is highly effective against targets with moderate levels of protection within a range of about 50m, after which lethality is rapidly reduced.</text>
+	</string>
+	<string id="ammo_new_6.5x25_hp_descr">
+		<text>The 6.5x25 CBJ HP has a full caliber monolithic copper projectile with a hollow point. Within the lethal range of around 80m it is very effective against non protected targets, but beyond this range it quickly looses velocity and energy.</text>
 	</string>
 </string_table>

@@ -1,0 +1,82 @@
+local last_check = nil
+local check_freq = 1000
+
+local function actor_on_update()
+    local tg = time_global()
+    if not last_check then
+        last_check = tg
+    end
+
+    if tg < last_check + check_freq then
+        return
+    end
+    last_check = tg
+    update_backpack_weight()
+end
+
+function actor_item_to_ruck()
+    update_backpack_weight()
+end
+
+function actor_item_to_slot()
+    update_backpack_weight()
+end
+
+local bkpk_weight_reduction_mul = 0.5
+function update_backpack_weight()
+    local bkpk = db.actor:item_in_slot(13)
+    if not bkpk then weight.add_weight("bkpk_weight_reduction", 0, true) return end
+    local bkpk_weight = bkpk:get_additional_max_weight() or 0
+    local bkpk_weight_reduction = (bkpk_weight - (bkpk_weight * bkpk:condition())) * (bkpk_weight_reduction_mul * -1)
+    weight.add_weight("bkpk_weight_reduction", bkpk_weight_reduction, true)
+    return bkpk_weight + bkpk_weight_reduction
+end
+
+function on_game_start()
+    RegisterScriptCallback("actor_on_update",actor_on_update)
+	RegisterScriptCallback("actor_item_to_ruck",actor_item_to_ruck)
+	RegisterScriptCallback("actor_item_to_slot",actor_item_to_slot)
+end
+
+new_stats = {
+    backpack = {
+        additional_inventory_weight = {
+            index = 1,
+            typ = "float",
+            name = "ui_inv_outfit_additional_weight",
+            icon_p = "ui_am_propery_08",
+            icon_n = "ui_am_prop_carry_weight_negative",
+            track = false,
+            magnitude = 1,
+            unit = "st_kg",
+            compare = false,
+            sign = true,
+            show_always = false,
+            value_functor= {"backpack_degradation_tweaks","update_backpack_weight"}
+        }
+    }
+}
+
+if ish_item_stats then
+    override_stats_table = ish_item_stats.override_stats_table
+    
+    ish_item_stats.override_stats_table = function()
+        override_stats_table()
+        inject_stats()
+    end
+end
+
+prepare_stats_table = utils_ui.prepare_stats_table
+
+utils_ui.prepare_stats_table = function()
+    prepare_stats_table()
+    inject_stats()
+end
+
+function inject_stats()
+    for dest, stats in pairs(new_stats) do
+        for stat, t in pairs(stats) do
+            utils_ui.stats_table[dest][stat] = t
+        end
+    end
+end

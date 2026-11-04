@@ -1,0 +1,2 @@
+# Storylines - I dont care that they died
+Goofy """""fix""""" for the annoying Storylines important npcs dying when you least expect them to. Now if they die the mission wont fail so just spawn them back via debug.

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<string_table>
+	<string id="st_upg_carry_1_name">
+		<text>Weight distribution back frame (+3kgs)</text>
+	</string>
+	<string id="st_upg_carry_1_descr">
+		<text>A back frame relieves focused shoulder load from carried weight by distributing it over the body, which increases maximum load.</text>
+	</string>
+	<string id="st_upg_carry_2_name">
+		<text>Weight distribution back frame (+4kgs)</text>
+	</string>
+	<string id="st_upg_carry_2_descr">
+		<text>A back frame relieves focused shoulder load from carried weight by distributing it over the body, which increases maximum load.</text>
+	</string>
+	<string id="st_upg_carry_3_name">
+		<text>Weight distribution back frame (+5kgs)</text>
+	</string>
+	<string id="st_upg_carry_3_descr">
+		<text>A back frame relieves focused shoulder load from carried weight by distributing it over the body, which increases maximum load.</text>
+	</string>
+</string_table>

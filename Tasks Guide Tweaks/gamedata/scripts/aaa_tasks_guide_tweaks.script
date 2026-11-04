@@ -1,0 +1,150 @@
+local avg_rank_mult = 1.0
+local timer_mult = 2.0 --1.5
+local salary_mult = 2.0
+local penalty_mult = 1.5
+local rank_professional = 0
+
+tasks_guide.prepare_follower = function()
+	--[[
+	if (not db.actor) or (db.actor:character_rank() < 2000) then
+		return tasks_guide.g_start_timer('guid_msg',0,0,15,'tasks_guide','prepare_follower')
+	end
+	--]]
+
+	if (not item_device.is_pda_charged(true)) then
+		return tasks_guide.g_start_timer('guid_msg',0,0,15,'tasks_guide','prepare_follower')
+	end
+
+	local npc = tasks_guide.ins_mass_onl()
+	local se_npc = npc and alife_object(npc:id())
+	if (npc == nil) or (se_npc == nil) then
+		return tasks_guide.g_start_timer('guid_msg',0,0,15,'tasks_guide','prepare_follower')
+	end
+	local level_name, size = tasks_guide.go_poisk()
+	if level_name == nil or size == nil then
+		return tasks_guide.g_start_timer('guid_msg',0,0,15,'tasks_guide','prepare_follower')
+	end
+	local tmp_smarts = {}
+	local sim = alife()
+	local gg = game_graph()
+	--[[
+	for name, sobj in pairs(SIMBOARD.smarts_by_names) do
+		if level_name == sim:level_name(gg:vertex(sobj.m_game_vertex_id):level_id()) then
+			tmp_smarts[#tmp_smarts + 1] = sobj
+		end
+	end
+	--]]
+
+	-- Compare actor rank with squad average
+	local k_rank = 0
+    local k_rank_diff = 0
+	local k_squad_count = 0
+	for k in get_object_squad(npc):squad_members() do
+		k_squad_count = k_squad_count + 1
+		local k_st = db.storage[k.id]
+		local k_member = k_st and k_st.object
+		k_rank = k_rank + k_member:character_rank()
+		printf("z_tasks_guide_tweaks - NPC Rank = " .. k_member:character_rank())
+	end
+    printf("z_tasks_guide_tweaks - Average Squad Rank = " .. k_rank / k_squad_count * avg_rank_mult)
+	if (db.actor:character_rank() < k_rank / k_squad_count * avg_rank_mult) then
+		return tasks_guide.g_start_timer('guid_msg',0,0,15,'tasks_guide','prepare_follower')
+	end
+    k_rank_diff = k_rank / utils_obj.get_squad_count(get_object_squad(npc)) / rank_professional
+	
+	for name, v in pairs( SIMBOARD.smarts_by_names ) do
+		if (level_name == sim:level_name(gg:vertex(v.m_game_vertex_id):level_id())) and (simulation_objects.available_by_id[v.id] == true) then
+			local smrt = SIMBOARD.smarts[v.id]
+			if smrt and (smrt.squads) then
+				local count = 0
+				for k, sqd in pairs(smrt.squads) do
+					local squad = alife_object(k)
+					if ( squad and simulation_objects.is_on_the_same_level( squad, v ) and squad.current_target_id and squad.current_target_id == v.id and squad.current_action == 1 ) then
+						if (not game_relations.is_factions_enemies(se_npc:community() , squad.player_id)) then
+							tmp_smarts[#tmp_smarts + 1] = v
+							--printf("-Guide Job | npc id: " .. npc:id() .. " - npc comm: " .. se_npc:community() .. " - available smart: " .. tostring(name))
+							break
+						end
+					end
+				end
+			else
+				tmp_smarts[#tmp_smarts + 1] = v
+				--printf("-Guide Job | npc id: " .. npc:id() .. " - npc comm: " .. se_npc:community() .. " - available smart: " .. tostring(name))
+			end
+		end
+	end
+	
+	local smart = tmp_smarts[math.random(#tmp_smarts)]
+	if not (smart and smart.id) then
+		return tasks_guide.g_start_timer('guid_msg',0,0,15,'tasks_guide','prepare_follower')
+	end
+	
+	tasks_guide.guid.id_smart		= smart.id
+	tasks_guide.guid.target_level	= level_name
+	tasks_guide.guid.description	= dynamic_news_helper.GetPointDescription(smart)
+	tasks_guide.guid.squad_id		= get_object_squad(npc).id
+	tasks_guide.guid.size			= size
+	tasks_guide.guid.timer			= timer_mult * (size + math.random(0, size))
+	tasks_guide.guid.zarplata		= math.ceil(salary_mult * size * math.random(tasks_guide.stdzarplata * 1.75, tasks_guide.stdzarplata * 3 * math.pow(k_rank_diff, 0.25))) -- math.random(tasks_guide.stdzarplata * 0.5, tasks_guide.stdzarplata * 1.5)
+	tasks_guide.guid.neustoika		= math.ceil(penalty_mult * math.random(tasks_guide.guid.zarplata * 1.75, tasks_guide.guid.zarplata * 3 * math.pow(k_rank_diff, 0.25)))
+	
+	local str = string.format(game.translate_string('st_jg_14'), game.translate_string(level_name), dynamic_news_helper.GetPointDescription(npc), npc:character_name())
+	news_manager.send_tip(db.actor, str, nil, npc, 15000)
+	return
+	-- We start the timer for the next call of this function
+	tasks_guide.g_start_timer('guid_msg',0,math.random(1,6),0,'tasks_guide','prepare_follower')
+end
+
+tasks_guide.prec_1 = function(actor, npc)
+	local npc = dialogs.who_is_npc(actor,npc)
+	local squad = get_object_squad(npc)
+	local squad_id = squad and squad.id
+
+    if not db.actor then return false end
+
+	--[[
+    local rank = db.actor:character_rank()
+    if rank < 2000 then
+        return false
+    end
+	--]]
+
+	-- Compare actor rank with squad average
+	local k_rank = 0
+	local k_squad_count = 0
+	for k in get_object_squad(npc):squad_members() do
+		k_squad_count = k_squad_count + 1
+		local k_st = db.storage[k.id]
+		local k_member = k_st and k_st.object
+		k_rank = k_rank + k_member:character_rank()
+	end
+	if (db.actor:character_rank() < k_rank / k_squad_count * avg_rank_mult) then
+		return false
+	end
+	
+	return squad and (squad_id == tasks_guide.guid.squad_id or squad_id == tasks_guide.curr_guid.squad_id) and (npc:id() == tasks_guide.get_comm_id(squad_id))
+end
+
+
+local function on_option_change()
+    avg_rank_mult = tasks_guide_tweaks_mcm.get_config("avg_rank_mult")
+    timer_mult = tasks_guide_tweaks_mcm.get_config("timer_mult")
+    salary_mult = tasks_guide_tweaks_mcm.get_config("salary_mult")
+    penalty_mult = tasks_guide_tweaks_mcm.get_config("penalty_mult")
+end
+
+function on_game_start()
+	local ini = ini_file("creatures\\game_relations.ltx")
+	local rank_table = ini:r_string_ex("game_relations", "rating")
+    local i = 0
+    for k in string.gmatch(rank_table, '([^,]+)') do
+        i = i + 1
+        if i == 8 then
+            rank_professional = k
+        end
+    end
+
+	RegisterScriptCallback("on_option_change", on_option_change)
+
+	on_option_change()
+end

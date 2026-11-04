@@ -1,0 +1,151 @@
+-- Random code from a 3d modeler, expect the worst
+-- Added compatibility with Demonized DAO, Semitone Arrival and Beefs NVGs
+-- Merged Ishmaeel GeigerHush
+
+local slot_only = false
+
+local rad_unit = game.translate_string("st_msv")
+local holding_shift = false
+local dosimeter_env_rads_mode = false
+
+-- GeigerHush
+local next_touchy = 0
+local hush_min = 100
+local hush_max = 500
+
+function initialize()
+	local ini_device = ini_file("items\\settings\\devices.ltx")
+	local ini_rad_zones = ini_file_ex("zones\\zone_field_radioactive.ltx")
+
+	device_anomaly = ini_device:r_sec_ex("settings","anomaly","detector_anomaly")
+	rad_zones = ini_rad_zones:get_sections(true)
+end
+
+local function on_key_hold(key)
+	if (key == DIK_keys["DIK_LSHIFT"]) then
+		holding_shift = true
+	end
+end
+
+item_device.on_key_release = function(key)
+
+	if (key == DIK_keys["DIK_LSHIFT"]) then
+		holding_shift = false
+		return
+	end
+
+	local bind = dik_to_bind(key)
+	
+	-- Night-Vision
+	if (bind == key_bindings.kNIGHT_VISION) then
+		-- Beef's NVGs Check
+		if (z_beefs_nvgs) then
+			printf("beef - key on-release")
+			RemoveTimeEvent("nvg_keypress", "nvg_keypress_long")
+
+			if not item_device.nv_change_state then
+				printf("beef - brightness adjust")
+				z_beefs_nvgs.brightness_adjust()
+			end
+
+			item_device.nv_change_state = false
+		else
+			printf("vanilla - key on-release")
+			local torch = db.actor:item_in_slot(10)
+			item_device.set_nightvision(torch and torch:section(), not item_device.nv_state)
+		end
+		
+	-- Dosimeter keybind (Geiger has to be on slot)
+	elseif (bind == key_bindings.kCUSTOM14) then
+		local device_geiger = item_device.device_geiger
+		local obj_geiger = db.actor:object(device_geiger)
+		local detector = db.actor:item_in_slot(9)
+		if not (detector and detector:section() == device_geiger) then return end
+		if (obj_geiger and item_device.drain_device_on_event(obj_geiger, device_geiger, 2)) then
+		
+			if (holding_shift) then
+				dosimeter_env_rads_mode = not dosimeter_env_rads_mode
+				dosimeter_mode_string = dosimeter_env_rads_mode and game.translate_string("st_environment_rads") or game.translate_string("st_actor_rads")
+				actor_menu.set_msg(1, game.translate_string("st_dosimeter_mode")..": "..dosimeter_mode_string , 3)
+				return
+			end
+		
+			local rads = dosimeter_env_rads_mode and math.floor(level.get_env_rads()*2500) or math.floor(db.actor.radiation*10000*0.387)
+			actor_menu.set_msg(1,  tostring(rads) .. " " .. rad_unit , 2 )
+			utils_obj.play_sound("detectors\\geiger_1")
+		end
+	end
+end
+
+
+item_device.on_anomaly_touch = function(obj, flags)
+    if obj then
+		
+		-- Don't play gieger sound if player don't have a geiger counter
+		if rad_zones[obj:section()] then
+			if game_difficulties.get_game_factor("notify_geiger") then
+                local device_geiger = item_device.device_geiger
+				local obj_geiger = device_geiger and db.actor:object(device_geiger)
+				if not (obj_geiger and item_device.drain_device_on_event(obj_geiger, device_geiger, 1)) then
+					-- Slot-only
+					if slot_only then
+						local detector = db.actor:item_in_slot(9)
+						if (detector and detector:section() == device_geiger) then return end
+					end
+					flags.ret_value = false
+					return
+				end
+			end
+
+			-- GeigerHush
+			if ish_geiger_hush then
+				if next_touchy > time_global() then
+					flags.ret_value = false
+				else
+					next_touchy = time_global() + math.random(hush_min, hush_max)
+				end
+			end
+			
+		-- Anomaly detector
+		elseif game_difficulties.get_game_factor("notify_anomaly") then
+			local obj_anomaly = device_anomaly and db.actor:object(device_anomaly)
+			if not (obj_anomaly and item_device.drain_device_on_event(obj_anomaly, device_anomaly, 1)) then
+				-- Slot-only
+				if slot_only then
+					local detector = db.actor:item_in_slot(9)
+					if (detector and detector:section() == device_anomaly) then return end
+				end
+				flags.ret_value = false
+				return
+			end
+		end
+	end
+	
+	flags.ret_value = true
+end
+
+
+-- DAO/Arrival Check
+if drx_da_main then
+	drx_da_main.notify_anomaly = function(anomaly, actor, distance_to_sqr, radius_sqr, custom_callback)
+		local obj_anomaly = device_anomaly and db.actor:object(device_anomaly)
+		local detector = actor:active_detector()
+		local sec = detector and detector:section()
+		-- if equipped detector_anomaly
+		if sec and item_device.drain_device_on_event(obj_anomaly, device_anomaly, 1) and drx_da_main.detector_functions[sec] then
+			drx_da_main.detector_functions[sec](drx_da_main.detector_functions, anomaly, actor, distance_to_sqr, radius_sqr, custom_callback)
+		-- if in inventory
+		elseif item_device.drain_device_on_event(obj_anomaly, device_anomaly, 1) and (drx_da_main_mcm.new_anomalies_sections[anomaly.section] or drx_da_main_mcm.variations_anomalies_sections[anomaly.section]) and not custom_callback then
+			drx_da_main.detector_functions:play_anomaly_sound(anomaly, actor, distance_to_sqr, radius_sqr)
+		-- if notify regardless of item in inventory
+		elseif not (game_difficulties.get_game_factor("notify_anomaly")) and (drx_da_main_mcm.new_anomalies_sections[anomaly.section] or drx_da_main_mcm.variations_anomalies_sections[anomaly.section]) and not custom_callback then
+			drx_da_main.detector_functions:play_anomaly_sound(anomaly, actor, distance_to_sqr, radius_sqr)
+		end
+	end
+end
+
+function on_game_start()
+	RegisterScriptCallback("on_key_hold",on_key_hold)
+
+	initialize()
+end

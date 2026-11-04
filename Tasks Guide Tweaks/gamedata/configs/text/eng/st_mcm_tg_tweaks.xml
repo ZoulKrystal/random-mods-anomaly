@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<string_table>
+	<string id="ui_mcm_menu_tg_tweaks">
+		<text>Tasks Guide Tweaks</text>
+	</string>
+	<string id="ui_mcm_tg_tweaks_title">
+		<text>Tasks Guide Tweaks</text>
+	</string>
+	<string id="ui_mcm_tg_tweaks_avg_rank_mult">
+		<text>Average Rank Multiplier</text>
+	</string>
+    <string id="ui_mcm_tg_tweaks_timer_mult">
+		<text>Timer Multiplier</text>
+	</string>
+    <string id="ui_mcm_tg_tweaks_salary_mult">
+		<text>Salary Multiplier</text>
+	</string>
+    <string id="ui_mcm_tg_tweaks_penalty_mult">
+		<text>Panalty Multiplier</text>
+	</string>
+</string_table>

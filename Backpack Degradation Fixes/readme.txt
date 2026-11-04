@@ -1,1 +1,0 @@
-Requires Re-enable Backpack Degradation from Tosox: https://github.com/Tosox/Tosox-Mini-Mods-Repo/tree/master/Re-enable%20Backpack%20Degradation

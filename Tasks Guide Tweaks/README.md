@@ -1,0 +1,2 @@
+# Tasks Guide Tweaks
+Tasks guide missions now compare the average squad rank with the players rank to decide if that squad is available for a escort mission. Also added a MCM with multipliers for rank comparison, timer, pay and penalty.

@@ -1,0 +1,23 @@
+function on_mcm_load()
+    op = { id= "tg_tweaks",sh=true ,gr={
+            {id = "title",                          type= "slide", link= "ui_options_slider_player", text="ui_mcm_tg_tweaks_title", size= {512,50}, spacing= 20},
+
+			{id = "avg_rank_mult",                      type = "track", val = 2, min=0,     max=2,    step=0.1,     def = 1.0},
+            {id = "timer_mult",                      type = "track", val = 2, min=1,     max=3,    step=0.1,     def = 2.0},
+            {id = "salary_mult",                      type = "track", val = 2, min=0,     max=3,    step=0.1,     def = 2.0},
+            {id = "penalty_mult",                      type = "track", val = 2, min=0,     max=3,    step=0.1,     def = 1.5},
+        }
+    }
+    return op
+end
+
+local defaults = {
+    ["avg_rank_mult"] = 1.0,
+    ["timer_mult"] = 2.0,
+    ["salary_mult"] = 2.0,
+    ["penalty_mult"] = 1.5,
+}
+
+function get_config(key)
+    if ui_mcm then return ui_mcm.get("tg_tweaks/"..key) else return defaults[key] end
+end
