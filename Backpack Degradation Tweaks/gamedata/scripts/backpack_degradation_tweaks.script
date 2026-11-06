@@ -36,7 +36,6 @@ function update_backpack_weight()
             local parts = item_parts.get_parts_con(bkpk)
             for k,v in pairs(parts) do
                 if SYS_GetParam(1, k, "cond_part") then
-                    printf(k .. " " .. v)
                     bkpk_parts_cond = bkpk_parts_cond + v
                     bkpk_parts_count = bkpk_parts_count + 1
                 end

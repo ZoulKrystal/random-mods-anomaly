@@ -116,6 +116,7 @@ tasks_guide.prec_1 = function(actor, npc)
 		k_squad_count = k_squad_count + 1
 		local k_st = db.storage[k.id]
 		local k_member = k_st and k_st.object
+		if not k_member then return false end -- crash band aid
 		k_rank = k_rank + k_member:character_rank()
 	end
 	if (db.actor:character_rank() < k_rank / k_squad_count * avg_rank_mult) then
