@@ -2,7 +2,7 @@ hit_to_section = item_artefact.hit_to_section
 equipement_damaging = item_artefact.equipement_damaging
 mul = item_artefact.mul
 
-item_artefact.actor_on_before_hit = function(s_hit)
+item_artefact.actor_on_before_hit = function(s_hit, bone_id)
 	if (s_hit.power <= 0) then
 		return
 	end
@@ -42,6 +42,7 @@ item_artefact.actor_on_before_hit = function(s_hit)
 			if imm_sect == "light_burn_immunity" then imm_sect = "burn_immunity" end
 			cond_loss = imm_sect and ini_sys:r_float_ex(hit_absorbation_sect,imm_sect)*0.5 or 0
 			cond_loss = cond_loss * s_hit.power
+			if bone_id == 15 and s_hit.type == "fire_wound" then cond_loss = 0 end -- No head?
 			if (cond_loss > 0) then
 
 				item_artefact.print_dbg("Backpack degradation |  artefact: %s - hit_power: %s - cond_loss: %s", backpack:name(), s_hit.power, cond_loss)

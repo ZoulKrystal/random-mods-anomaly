@@ -1,0 +1,26 @@
+if arti_frames_control then
+    gc = game.translate_string
+
+    local clr_r  = utils_xml.get_color("d_red")
+    local clr_g  = utils_xml.get_color("d_green")
+    local clr_y  = utils_xml.get_color("yellow")
+
+    local clr_2  = utils_xml.get_color("ui_gray_1")
+    --original_build_desc_header = ui_item.build_desc_header
+    arti_frames_control.ui_item.build_desc_header = function(obj, sec, str)
+        local _str = ""
+        local _str2 = arti_frames_control.original_build_desc_header(obj, sec, str)
+        
+        if obj and arti_frames_control.is_backpack(obj) then
+            if not arti_frames_control.backpacks[obj:id()] then
+                _str = _str .."  " .. clr_r .. gc("st_dot") .. " "  ..  gc("st_no_frame_equipped") .. clr_2 .. "\\n \\n"
+            else
+                _str = _str .. "  " .. clr_y .. gc("st_dot") .. " " .. clr_2 .. gc("st_equipped_frame") .. " " .. clr_g .. ui_item.get_sec_name(arti_frames_control.backpacks[obj:id()]) .. clr_2 .. "\\n \\n"
+            end
+
+        end
+        _str = _str2 .. _str
+
+        return _str
+    end
+end

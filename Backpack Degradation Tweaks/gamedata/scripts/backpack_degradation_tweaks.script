@@ -22,12 +22,29 @@ function actor_item_to_slot()
     update_backpack_weight()
 end
 
-local bkpk_weight_reduction_mul = 0.5
+local bkpk_weight_reduction_mul = 0.5 -- No MCM? im a lazy fuck
 function update_backpack_weight()
     local bkpk = db.actor:item_in_slot(13)
     if not bkpk then weight.add_weight("bkpk_weight_reduction", 0, true) return end
     local bkpk_weight = bkpk:get_additional_max_weight() or 0
-    local bkpk_weight_reduction = (bkpk_weight - (bkpk_weight * bkpk:condition())) * (bkpk_weight_reduction_mul * -1)
+    local bkpk_cond = bkpk:condition()
+    local bkpk_parts_cond = 0
+    local bkpk_parts_count = 0
+    -- If using OPO and something gives parts to backpacks
+    if arti_outfits then
+        if arti_outfits.has_parts(bkpk) then
+            local parts = item_parts.get_parts_con(bkpk)
+            for k,v in pairs(parts) do
+                if SYS_GetParam(1, k, "cond_part") then
+                    printf(k .. " " .. v)
+                    bkpk_parts_cond = bkpk_parts_cond + v
+                    bkpk_parts_count = bkpk_parts_count + 1
+                end
+            end
+            bkpk_cond = (bkpk_parts_cond * 0.01 + bkpk_cond) / (bkpk_parts_count + 1)
+        end
+    end
+    local bkpk_weight_reduction = (bkpk_weight - (bkpk_weight * bkpk_cond)) * (bkpk_weight_reduction_mul * -1)
     weight.add_weight("bkpk_weight_reduction", bkpk_weight_reduction, true)
     return bkpk_weight + bkpk_weight_reduction
 end

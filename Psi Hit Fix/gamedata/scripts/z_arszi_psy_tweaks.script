@@ -1,0 +1,50 @@
+local psy_zones = {}
+
+arszi_psy.actor_on_before_hit = function(s_hit)
+    arszi_psy.trace_this("HIT POWER: "..s_hit.power.." HIT TYPE: "..s_hit.type)
+    if (s_hit.type ~= 4) then return end
+
+    if (is_actor_immune_to_psy(s_hit)) then
+        s_hit.power = 0
+        return 
+    end
+
+    if (s_hit.draftsman and arszi_psy.is_controller(s_hit.draftsman)) then
+        s_hit.power = arszi_psy.get_controller_tube_damage(s_hit.draftsman:position(), s_hit.power)
+        --arszi_psy.show_message_news("HIT POWER: "..s_hit.power.." DISTANCE: "..get_distance(db.actor:position(), s_hit.draftsman:position()))
+    end
+
+    local total_damage = s_hit.power - arszi_psy.get_telepatic_protection_total()
+    if (total_damage < 0) then total_damage = 0 end
+    --arszi_psy.show_message_news("PROTECTION: "..get_telepatic_protection_total().. " RECEIVED DAMAGE: "..total_damage)
+
+    arszi_psy.psy_table.actor_psy_health = arszi_psy.psy_table.actor_psy_health - total_damage
+    s_hit.power = 0
+end
+
+function is_actor_immune_to_psy(hit)
+    if arszi_psy.is_actor_zombied() then
+        return true
+    end
+    if (psy_zones[hit.draftsman:section()] and character_community(db.actor) == "actor_monolith") then
+        return true
+    end
+    if get_console_cmd(1,"g_god") then
+        return true
+    end
+    if (bind_stalker_ext.invulnerable_time and time_global() < bind_stalker_ext.invulnerable_time) then
+        return true
+    end
+    return false
+end
+
+function actor_on_update()
+    local time_g = time_global()
+end
+
+function on_game_start()
+    RegisterScriptCallback("actor_on_update",actor_on_update)
+
+	local ini_psy_zones = ini_file_ex("zones\\zone_field_psychic.ltx")
+	psy_zones = ini_psy_zones:get_sections(true)
+end
