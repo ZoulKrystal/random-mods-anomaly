@@ -1,0 +1,29 @@
+task_status_functor.create_squad_status_functor = function(tsk,task_id)
+    if not (db.actor) then 
+		return 
+	end
+    if (task_id == "hunter_gar_trader_task_7") then 
+		if has_alife_info("hunter_gar_trader_task_7_gigant_squad_dead") then 
+			tsk.stage = 1
+		else
+			tsk.stage = 0
+		end
+    end
+end
+
+task_functor.create_squad_target_functor = function(task_id,field,p,tsk)	
+	if (field == "target") then
+		if (task_id == "hunter_gar_trader_task_7") then
+			if (tsk.stage == 1) then
+				return tsk.task_giver_id
+			end
+			local smart = SIMBOARD.smarts_by_names["trc_sim_9"]
+			local target_id = db.actor and load_var(db.actor,"trc_sim_9_target_id")
+			local se_target = target_id and alife_object(target_id)
+			if (se_target and smart.position:distance_to_sqr(se_target.position) > 2500) then
+				return target_id
+			end
+			return smart and smart.id or nil
+        end
+    end
+end

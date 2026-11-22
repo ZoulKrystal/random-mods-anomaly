@@ -2,10 +2,11 @@ function on_mcm_load()
     op = { id= "tg_tweaks",sh=true ,gr={
             {id = "title",                          type= "slide", link= "ui_options_slider_player", text="ui_mcm_tg_tweaks_title", size= {512,50}, spacing= 20},
 
-			{id = "avg_rank_mult",                      type = "track", val = 2, min=0,     max=2,    step=0.1,     def = 1.0},
-            {id = "timer_mult",                      type = "track", val = 2, min=1,     max=3,    step=0.1,     def = 2.0},
-            {id = "salary_mult",                      type = "track", val = 2, min=0,     max=3,    step=0.1,     def = 2.0},
-            {id = "penalty_mult",                      type = "track", val = 2, min=0,     max=3,    step=0.1,     def = 1.5},
+			{id = "avg_rank_mult",	type = "track", val = 2, min=0,     max=2,    step=0.1,     def = 1.0},
+            {id = "timer_mult",		type = "track", val = 2, min=1,     max=3,    step=0.1,     def = 2.0},
+            {id = "salary_mult",	type = "track", val = 2, min=0,     max=3,    step=0.1,     def = 2.0},
+            {id = "penalty_mult",	type = "track", val = 2, min=0,     max=3,    step=0.1,     def = 1.5},
+            {id = "debug", 			type = "check", val = 1, def=false},
         }
     }
     return op
@@ -16,6 +17,7 @@ local defaults = {
     ["timer_mult"] = 2.0,
     ["salary_mult"] = 2.0,
     ["penalty_mult"] = 1.5,
+	["debug"] = false,
 }
 
 function get_config(key)

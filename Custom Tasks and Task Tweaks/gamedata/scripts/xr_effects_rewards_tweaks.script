@@ -1,0 +1,40 @@
+local dbg = false
+
+function print_dbg(text, ...) 
+	if dbg then
+		printf("xr_effects_rewards_tweaks | " .. text, time_global(), ...)
+	end
+end
+
+xr_effects.reward_random_item = function(actor,npc,p)
+	if (#p > 0) then
+        local max_cost = 0
+        for i,v in ipairs(p) do
+            local cost = ini_sys:r_float_ex(v,"cost") or 0
+            if cost > max_cost then max_cost = cost end
+        end
+		local section_d = weighted_randomizer(p, 1.25, max_cost) --p[math.random(#p)]
+		xr_effects.reward_item(actor,npc,{section_d})
+	end
+end
+
+function weighted_randomizer(items, min, max)
+    local min_mul = min or 1.25
+    local threshold_max = 0
+    local thresholds = {}
+    for i,v in ipairs(items) do
+        local cost = (ini_sys:r_float_ex(v,"cost") or 0)
+        local threshold = (cost / (max * min_mul) * -1 + 1) * 100
+        print_dbg("Threshold for %s is %s, item cost is %s", v, threshold, cost)
+        table.insert(thresholds, {v, threshold + threshold_max})
+        threshold_max = threshold_max + threshold
+    end
+    print_dbg("Total threshold is %s", threshold_max)
+    local selection = math.random() * threshold_max
+    for i,v in ipairs(thresholds) do
+        if selection <= v[2] then
+            print_dbg("Reward item is %s", v[1])
+            return v[1]
+        end
+    end
+end

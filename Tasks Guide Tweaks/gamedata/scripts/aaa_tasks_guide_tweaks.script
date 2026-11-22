@@ -2,7 +2,19 @@ local avg_rank_mult = 1.0
 local timer_mult = 2.0 --1.5
 local salary_mult = 2.0
 local penalty_mult = 1.5
-local rank_professional = 0
+local debug = false
+
+-- novice, trainee, experienced, professional, veteran, expert, master, legend
+local rank_values = {}
+-- terrible, really_bad, very_bad, bad, neutral, good, very_good, really_good, excellent
+local rep_values = {}
+
+function print_dbg( text , ...)
+	if debug then
+		printf( "aaa_tasks_guide_tweaks | %s |  " .. text , time_global(), ...)
+	end
+	return nil
+end
 
 tasks_guide.prepare_follower = function()
 	--[[
@@ -44,13 +56,13 @@ tasks_guide.prepare_follower = function()
 		local k_st = db.storage[k.id]
 		local k_member = k_st and k_st.object
 		k_rank = k_rank + k_member:character_rank()
-		printf("z_tasks_guide_tweaks - NPC Rank = " .. k_member:character_rank())
+		print_dbg("NPC Rank = " .. k_member:character_rank())
 	end
-    printf("z_tasks_guide_tweaks - Average Squad Rank = " .. k_rank / k_squad_count * avg_rank_mult)
+    print_dbg("Average Squad Rank = " .. k_rank / k_squad_count * avg_rank_mult)
 	if (db.actor:character_rank() < k_rank / k_squad_count * avg_rank_mult) then
 		return tasks_guide.g_start_timer('guid_msg',0,0,15,'tasks_guide','prepare_follower')
 	end
-    k_rank_diff = k_rank / utils_obj.get_squad_count(get_object_squad(npc)) / rank_professional
+    k_rank_diff = k_rank / utils_obj.get_squad_count(get_object_squad(npc)) / tonumber(rank_values[4])
 	
 	for name, v in pairs( SIMBOARD.smarts_by_names ) do
 		if (level_name == sim:level_name(gg:vertex(v.m_game_vertex_id):level_id())) and (simulation_objects.available_by_id[v.id] == true) then
@@ -62,14 +74,14 @@ tasks_guide.prepare_follower = function()
 					if ( squad and simulation_objects.is_on_the_same_level( squad, v ) and squad.current_target_id and squad.current_target_id == v.id and squad.current_action == 1 ) then
 						if (not game_relations.is_factions_enemies(se_npc:community() , squad.player_id)) then
 							tmp_smarts[#tmp_smarts + 1] = v
-							--printf("-Guide Job | npc id: " .. npc:id() .. " - npc comm: " .. se_npc:community() .. " - available smart: " .. tostring(name))
+							print_dbg("npc id: " .. npc:id() .. " - npc comm: " .. se_npc:community() .. " - available smart: " .. tostring(name))
 							break
 						end
 					end
 				end
 			else
 				tmp_smarts[#tmp_smarts + 1] = v
-				--printf("-Guide Job | npc id: " .. npc:id() .. " - npc comm: " .. se_npc:community() .. " - available smart: " .. tostring(name))
+				print_dbg("npc id: " .. npc:id() .. " - npc comm: " .. se_npc:community() .. " - available smart: " .. tostring(name))
 			end
 		end
 	end
@@ -127,24 +139,25 @@ tasks_guide.prec_1 = function(actor, npc)
 end
 
 
+local function actor_on_first_update()
+	local ini = ini_file("creatures\\game_relations.ltx")
+	local rank = ini:r_string_ex("game_relations", "rating")
+	local rep = ini:r_string_ex("game_relations", "reputation")
+	rank_values = str_explode(rank:gsub("[^-0-9, ]+,", ""), ",")
+	rep_values = str_explode(rep:gsub("[^-0-9, ]+,", ""), ",")
+end
+
 local function on_option_change()
     avg_rank_mult = tasks_guide_tweaks_mcm.get_config("avg_rank_mult")
     timer_mult = tasks_guide_tweaks_mcm.get_config("timer_mult")
     salary_mult = tasks_guide_tweaks_mcm.get_config("salary_mult")
     penalty_mult = tasks_guide_tweaks_mcm.get_config("penalty_mult")
+	debug = tasks_guide_tweaks_mcm.get_config("debug")
 end
 
 function on_game_start()
-	local ini = ini_file("creatures\\game_relations.ltx")
-	local rank_table = ini:r_string_ex("game_relations", "rating")
-    local i = 0
-    for k in string.gmatch(rank_table, '([^,]+)') do
-        i = i + 1
-        if i == 8 then
-            rank_professional = k
-        end
-    end
 
+	RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
 	RegisterScriptCallback("on_option_change", on_option_change)
 
 	on_option_change()

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+	<string id="st_tomato_open">
+		<text>Opened canned tomatoes</text>
+	</string>
+	<string id="st_tomato_open_descr">
+		<text>Canned, sliced and diced tomatoes are imported to the Zone on a regular basis. The best before date on the bottom suggests they would be fresh, but it was opened who knows when. A bit moldy, still edible.\n \n
+		%c[ui_gray_3]PROPERTIES:\n
+		%c[d_blue] • %c[ui_gray_2] food\n
+		%c[d_blue] • %c[ui_gray_2] imported\n
+		</text>
+	</string>
+	
+	<string id="st_corn_open">
+		<text>Opened canned corn</text>
+	</string>
+	<string id="st_corn_open_descr">
+		<text>Canned sweet corn imported from the outside. Can be eaten as it is, but one might catch a few diseases and tiny amounts of radiation.\n \n
+		%c[ui_gray_3]PROPERTIES:\n
+		%c[d_blue] • %c[ui_gray_2] food\n
+		%c[d_blue] • %c[ui_gray_2] imported\n
+		</text>
+	</string>
+	
+	<string id="st_beans_open">
+		<text>Opened baked beans</text>
+	</string>
+	<string id="st_beans_open_descr">
+		<text>Canned baked beans brought from the West. These haricot beans in tomato sauce may bring back nice memories to some people. This one is already opened, reeks of a weird smell and a bit radioactive, seems edible.\n \n
+		%c[ui_gray_3]PROPERTIES:\n
+		%c[d_blue] • %c[ui_gray_2] food\n
+		%c[d_blue] • %c[ui_gray_2] imported\n
+		</text>
+	</string>
+	
+	<string id="st_chili_open">
+		<text>Opened chili beans</text>
+	</string>
+	<string id="st_chili_open_descr">
+		<text>Canned chili beans imported from the West. It would be popular as an ingredient in the Zone if it wasnt already opened and rotting. A bit radioactive but still edible.\n \n
+		%c[ui_gray_3]PROPERTIES:\n
+		%c[d_blue] • %c[ui_gray_2] food\n
+		%c[d_blue] • %c[ui_gray_2] imported\n
+		</text>
+	</string>
+	
+	<string id="st_conserva_open">
+		<text>Opened can of tuna</text>
+	</string>
+	<string id="st_conserva_open_descr">
+		<text>The best before date at the back of the tin can and the rotting smell indicates that you shouldn't expect delicacies. Still edible, although one might glow after eating it.\n \n
+		%c[ui_gray_3]PROPERTIES:\n
+		%c[d_blue] • %c[ui_gray_2] food\n
+		%c[d_blue] • %c[ui_gray_2] imported\n
+		</text>
+	</string>
+	
+	<string id="st_tushonka_open">
+		<text>Opened "Abakan" beef tushonka</text>
+	</string>
+	<string id="st_tushonka_open_descr">
+		<text>Tushonka is a common name of canned, stewed meat produced in the Soviet Union and other Warsaw Pact countries. Despite their long expiry date, tushonkas are known for their high nutrition value (mostly owing to high fat content) and a relatively good taste, although given the smell, it may not be the case for this one. It is already opened and a geiger counter may tick near it. Still edible, possibly.\n \n
+		%c[ui_gray_3]PROPERTIES:\n
+		%c[d_blue] • %c[ui_gray_2] food\n
+		%c[d_blue] • %c[ui_gray_2] imported\n
+		</text>
+	</string>
+</string_table>

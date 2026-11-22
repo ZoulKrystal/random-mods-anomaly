@@ -1,0 +1,1 @@
+Replaces canned food dynamic spawns with opened versions (less satiety gain, more thirstiness, a bit of rads)

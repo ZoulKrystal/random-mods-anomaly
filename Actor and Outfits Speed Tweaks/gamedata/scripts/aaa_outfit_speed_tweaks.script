@@ -1,15 +1,34 @@
 -- Add support for helmet/backpack speed
 
 local last_outfit = 0
+local last_helmet = 0
+local last_backpack = 0
 
 outfit_speed_mcm.manage_outfit_speed = function()
-    local outfit = db.actor:item_in_slot(7) or db.actor:item_in_slot(12) or db.actor:item_in_slot(13)
+    local outfit = db.actor:item_in_slot(7)
     local outfit_id = outfit and outfit:id() or 0
-    local outfit_sec = outfit and outfit:section() or "no outfit"
-    if last_outfit ~= outfit_id then
+    local helmet = db.actor:item_in_slot(12)
+    local helmet_id = helmet and helmet:id() or 0
+    local backpack = db.actor:item_in_slot(13)
+    local backpack_id = backpack and backpack:id() or 0
+    if last_outfit ~= outfit_id or last_helmet ~= helmet_id or last_backpack ~= backpack_id then
         last_outfit = outfit_id
-        local coef = outfit and outfit_speed_mcm.get_outfit_speed(outfit, outfit_sec, false) or 1
-        local sprint_coef = outfit and outfit_speed_mcm.get_outfit_speed(outfit, outfit_sec, true) or 1
+        last_helmet = helmet_id
+        last_backpack = backpack_id
+
+        local outfit_sec = outfit and outfit:section() or "no outfit"
+        local helmet_sec = helmet and helmet:section() or "no helmet"
+        local backpack_sec = backpack and backpack:section() or "no backpack"
+
+        local outfit_coef = outfit and outfit_speed_mcm.get_outfit_speed(outfit, outfit_sec, false) or 1
+        local helmet_coef = helmet and outfit_speed_mcm.get_outfit_speed(helmet, helmet_sec, false) or 1
+        local backpack_coef = backpack and outfit_speed_mcm.get_outfit_speed(backpack, backpack_sec, false) or 1
+        local coef = outfit_coef * helmet_coef * backpack_coef
+
+        local outfit_sprint_coef = outfit and outfit_speed_mcm.get_outfit_speed(outfit, outfit_sec, true) or 1
+        local helmet_sprint_coef = helmet and outfit_speed_mcm.get_outfit_speed(helmet, helmet_sec, true) or 1
+        local backpack_sprint_coef = backpack and outfit_speed_mcm.get_outfit_speed(backpack, backpack_sec, true) or 1
+        local sprint_coef = outfit_sprint_coef * helmet_sprint_coef * backpack_sprint_coef
         outfit_speed_mcm.print_dbg("Speed for %s is %s, sprint speed is %s", outfit_sec, coef, sprint_coef)
         speed.add_speed("outfit_speed", coef, false, true)
         speed.add_speed("outfit_sprint_speed", sprint_coef, true, true)

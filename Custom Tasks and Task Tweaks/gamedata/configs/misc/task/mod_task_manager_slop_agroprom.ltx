@@ -1,0 +1,32 @@
+;------------------------------------------------------------------------------------------
+;-- ROGOVETS
+;------------------------------------------------------------------------------------------
+[agr_1_6_medic_army_mlr_task_2]
+title = agr_1_6_medic_army_mlr_task_2_name
+job_descr = agr_1_6_medic_army_mlr_task_2_about
+
+;precondition = true
+
+repeat_timeout = 259200
+
+stage_complete = 1
+descr_functor  = multifetch_task_descr_functor
+status_functor = multifetch_status_functor
+target_functor = multifetch_target_functor
+
+optional_item_1 	 = protein
+optional_item_1_num  = 4
+
+required_item_1 	 = prt_i_plastic
+required_item_1_num  = 6
+required_item_2 	 = e_syringe
+required_item_2_num  = 6
+required_item_3 	 = jar
+required_item_3_num  = 6
+
+on_extra_items_delivered_1 = %=reward_item(glucose)%
+
+condlist_0 		= {!task_giver_alive(agr_1_6_medic_army_mlr_task_2)} fail
+on_job_descr 	= %=multifetch_on_job_descr(agr_1_6_medic_army_mlr_task_2)%
+on_complete 	= %=reward_item(stimpack_army) =reward_item(stimpack_army) =multifetch_task_trigger_extra_items_condlist(agr_1_6_medic_army_mlr_task_2) =multifetch_remove(agr_1_6_medic_army_mlr_task_2:false) =complete_task_inc_goodwill(80:army)%
+on_fail 		= %=fail_task_dec_goodwill(40:army)%

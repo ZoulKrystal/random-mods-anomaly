@@ -19,4 +19,7 @@
     <string id="ui_mcm_tg_tweaks_penalty_mult">
 		<text>Panalty Multiplier</text>
 	</string>
+	<string id="ui_mcm_tg_tweaks_debug">
+		<text>Debug</text>
+	</string>
 </string_table>

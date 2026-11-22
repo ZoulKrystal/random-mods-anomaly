@@ -14,17 +14,26 @@ local function actor_on_update()
     update_backpack_weight()
 end
 
-function actor_item_to_ruck()
+local function actor_item_to_ruck()
     update_backpack_weight()
 end
 
-function actor_item_to_slot()
+local function actor_item_to_slot()
     update_backpack_weight()
+end
+
+local function ActorMenu_on_item_focus_receive(obj)
+    update_backpack_weight(obj)
 end
 
 local bkpk_weight_reduction_mul = 0.5 -- No MCM? im a lazy fuck
-function update_backpack_weight()
-    local bkpk = db.actor:item_in_slot(13)
+function update_backpack_weight(obj)
+    local bkpk
+    if obj and SYS_GetParam(0, obj:section(), "kind") == "i_backpack" then
+        bkpk = obj
+    else
+        bkpk = db.actor:item_in_slot(13)
+    end
     if not bkpk then weight.add_weight("bkpk_weight_reduction", 0, true) return end
     local bkpk_weight = bkpk:get_additional_max_weight() or 0
     local bkpk_cond = bkpk:condition()
@@ -52,6 +61,7 @@ function on_game_start()
     RegisterScriptCallback("actor_on_update",actor_on_update)
 	RegisterScriptCallback("actor_item_to_ruck",actor_item_to_ruck)
 	RegisterScriptCallback("actor_item_to_slot",actor_item_to_slot)
+    RegisterScriptCallback("ActorMenu_on_item_focus_receive",ActorMenu_on_item_focus_receive)
 end
 
 new_stats = {

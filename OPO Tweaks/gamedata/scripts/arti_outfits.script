@@ -83,15 +83,21 @@ function print_dbg(text, ...)
 end
 
 local function dump_immunities()
-    if get_config("debug") and current_outfit ~= 0 then
-        for k,v in pairs(current_outfit_immunity) do
-            print_dbg("Current player immunity to %s: %s", k, v)
+    if get_config("debug") then
+        if current_outfit ~= 0 then
+            for k,v in pairs(current_outfit_immunity) do
+                print_dbg("Current player immunity to %s: %s", k, v)
+            end
         end
-        for k,v in pairs(current_helmet_immunity) do
-            print_dbg("Current player helmet immunity to %s: %s", k, v)
+        if current_helmet ~= 0 then
+            for k,v in pairs(current_helmet_immunity) do
+                print_dbg("Current player helmet immunity to %s: %s", k, v)
+            end
         end
-        for k,v in pairs(current_backpack_immunity) do
-            print_dbg("Current player backpack immunity to %s: %s", k, v)
+        if current_backpack ~= 0 then
+            for k,v in pairs(current_backpack_immunity) do
+                print_dbg("Current player backpack immunity to %s: %s", k, v)
+            end
         end
     end
 end
@@ -143,6 +149,10 @@ end
 
 function is_helmet(sec)
     return SYS_GetParam(0, sec, "kind") == "o_helmet"
+end
+
+function is_backpack(sec)
+    return SYS_GetParam(0, sec, "kind") == "i_backpack"
 end
 
 function is_worn(obj)
@@ -364,7 +374,7 @@ function degrade_parts(type, amount, helmet_only)
             if not SYS_GetParam(1, k, "cond_part") then
             elseif (type == "fire_wound" and helmet_only) or type ~= "fire_wound" then
                 -- modify damage amt against part types and apply to part (out of 100)
-                local final_damage = 200 * amount * (i2m[d2i[type]][rank]) -- +100% damage for helmets
+                local final_damage = 100 * amount * (i2m[d2i[type]][rank])
                 if get_config("round") then
                     final_damage = math_floor(final_damage)
                 end
@@ -373,7 +383,7 @@ function degrade_parts(type, amount, helmet_only)
             end
         end
     end
-        -- Slop: support for backpacks
+        -- Soul: support for backpacks
     if not is_empty(current_backpack_parts) then
         for k,v in pairs(current_backpack_parts) do
             local rank = rank_component(k)
@@ -382,7 +392,7 @@ function degrade_parts(type, amount, helmet_only)
             if not SYS_GetParam(1, k, "cond_part") then
             elseif (type == "fire_wound" and not helmet_only) or type ~= "fire_wound" then
                 -- modify damage amt against part types and apply to part (out of 100)
-                local final_damage = 150 * amount * (i2m[d2i[type]][rank]) -- 50% damage for backpacks
+                local final_damage = 75 * amount * (i2m[d2i[type]][rank]) -- 75% damage for backpacks
                 if get_config("round") then
                     final_damage = math_floor(final_damage)
                 end
@@ -651,6 +661,7 @@ end
 
 function precond_repair(outfit)
     if not has_parts(outfit) then return end
+    if is_helmet(outfit:section()) then return end
     
     local outfit_parts = dup_table(item_parts.get_parts_con(outfit, nil, true))
     local found_helmet = nil

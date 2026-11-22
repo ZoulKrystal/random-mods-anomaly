@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<string_table>
+	<!-- Rogovets -->
+	<string id="agr_1_6_medic_army_mlr_task_2_name">
+		<text>Find the Medical Supplies for Rogovets</text>
+	</string>
+	<string id="agr_1_6_medic_army_mlr_task_2_about">
+		<text>A drug-making kit is much useful, but medical supplies also are. If you manage to find empty syringes, plastic jars or films, or even protein bars during your missions, could you bring them to me? They are not worth much, but I could offer you a few injections that will serve you well when in a tight situation. So, what do you say?</text>
+	</string>
+
+
+	<!-- Aspirin -->
+	<string id="bar_dolg_medic_task_2_name">
+		<text>Find the %s Artefact</text>
+	</string>
+	<string id="bar_dolg_medic_task_2_text">
+		<text>I've agreed to find Aspirin a %s for medical study.</text>
+	</string>
+	<string id="bar_dolg_medic_task_2_about">
+		<text>I'm looking for a %s artefact, they say it has healing properties and I would like to study it.</text>
+	</string>
+	<string id="bar_dolg_medic_task_2_fetch_about">
+		<text>There's a certain artefact that's said to have healing properties, it's not extremelly rare and not a myth at all. Said artefact is known as %s, and I would like to get my hands on one to study it. If you manage to get one, I'll make sure to give you enough medical supplies for your travels.</text>
+	</string>
+	<string id="bar_dolg_medic_task_2_fetch_finish">
+		<text>Well done, soldier. Here is your reward.</text>
+	</string>
+
+
+	<!-- Butcher -->
+	<string id="hunter_gar_trader_task_1_night_name">
+		<text>Night Hunt</text>
+	</string>
+	<string id="hunter_gar_trader_task_1_night_text">
+		<text>Butcher got news of a dangerous mutant roaming in the area. I've agreed to hunt it down.</text>
+	</string>
+	<string id="hunter_gar_trader_task_1_night_about">
+		<text>Not the sleeping type, are you? It seems like a dangerous night predator has come out of hiding and needs to be taken care of. Are you up for hunting at these late hours? Not anyone is, and that means some extra coins for your pockets.</text>
+	</string>
+	<string id="hunter_gar_trader_task_1_night_finish">
+		<text>I hope that didn't scare the rookies... Here's your reward.</text>
+	</string>
+
+	<string id="hunter_gar_trader_task_3_name">
+		<text>Collect %s for Butcher</text>
+	</string>
+	<string id="hunter_gar_trader_task_3_text">
+		<text>The Butcher asked me to get some %s for him.</text>
+	</string>
+	<string id="hunter_gar_trader_task_3_about">
+		<text>Butchering mutants for their skin is quite the job.</text>
+	</string>
+	<string id="hunter_gar_trader_task_3_fetch_about">
+		<text>Just look at this place, looks terrible. Do you know what it needs? A new carpet made from mutant hide, don't you think? Hah! On a more serious note, mutant pelts offer unique properties to whoever dares to wear them. Rookies that don't dare to hunt for artefacts use them for protection around here, and that makes for quite the profitable source of income. If you can bring me a few of them, I'll make sure to compensate for your time in cash.</text>
+	</string>
+	<string id="hunter_gar_trader_task_3_fetch_finish">
+		<text>Awesome, I'll finally have a new carpet. Here's your reward.</text>
+	</string>
+
+	<!-- Butcher - TOZ-34 "Bull" -->
+	<string id="hunter_gar_trader_task_4_name">
+		<text>The Bull: Find tools for The Butcher</text>
+	</string>
+	<string id="hunter_gar_trader_task_4_about">
+		<text>Lately you earned quited the reputation and it's known that you are to be trusted, so I'll tell you about my little dream project: A weapon capable of taking care of even the biggest mutant in the Zone. I can picture such weapon in my mind, and I find myself being handy with a few tools, but guess what? I don't have tools up for it. Basic shotgun cleaning kits won't do, I need something that could handle machine guns and anti-materiel rifles. Some cash and grilled meat will be waiting for you if you do.</text>
+	</string>
+	<string id="hunter_gar_trader_task_4_finish">
+		<text>Great, I knew you'd be the right person to ask. Here's your reward, although we are not done here.</text>
+	</string>
+
+	<string id="hunter_gar_trader_task_5_name">
+		<text>The Bull: Find parts for The Butcher</text>
+	</string>
+	<string id="hunter_gar_trader_task_5_about">
+		<text>This tooling is perfect for the job, although it seems that I lack some pieces of the puzzle... A barrel that could withstand higher pressures, a stock able to take said pressure, and an aiming device, for more precise shooting, of course. I'll make sure to reward you for your time.</text>
+	</string>
+	<string id="hunter_gar_trader_task_5_finish">
+		<text>It's a beauty, isn't it? Carbon fiber stock, rifled barrel, a red dot and most important of all, two powerful magnum slugs, the only two that you have, hah!</text>
+	</string>
+
+	<string id="hunter_gar_trader_task_6_name">
+		<text>The Bull: Find more tools for The Butcher</text>
+	</string>
+	<string id="hunter_gar_trader_task_6_about">
+		<text>You want more rounds, don't you? Of course you do, but without proper tooling it takes a lot of time to prepare those shells. I heard that some stalkers and traders smuggled gunsmithing tools in the Zone, if you could get your hands on one of those I'll make sure to get you a few shells.</text>
+	</string>
+	<string id="hunter_gar_trader_task_6_finish">
+		<text>You got the gun, and you got the rounds. Now, how about you test it against a real threat?</text>
+	</string>
+
+	<string id="hunter_gar_trader_task_7_name">
+		<text>The Bull: Test the firepower</text>
+	</string>
+	<string id="hunter_gar_trader_task_7_text">
+		<text>Butcher wants me to test his creation against a pseudogiant.</text>
+	</string>
+	<string id="hunter_gar_trader_task_7_about">
+		<text>Eager to shoot my precious creation? I've heard there's a pseudogiant roaming around Truck Cementary, perfect target for this. Hunt it down and let me know how how it performs in battle.</text>
+	</string>
+	<string id="hunter_gar_trader_task_7_finish">
+		<text>It's really effective, isn't it? Here, more shells for you and some cash.</text>
+	</string>
+</string_table>

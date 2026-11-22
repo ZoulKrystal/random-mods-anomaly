@@ -1,0 +1,23 @@
+[bar_dolg_medic_task_2]
+icon = ui_iconsTotal_artefact
+prior = 65
+storyline = false
+repeat_timeout = 259200
+;precondition = true
+
+title = bar_dolg_medic_task_2_name
+descr = bar_dolg_medic_task_2_text
+job_descr = bar_dolg_medic_task_2_about
+fetch_descr = bar_dolg_medic_task_2_fetch_about
+task_complete_descr = bar_dolg_medic_task_2_fetch_finish
+
+stage_complete = 1
+title_functor = general_fetch_task
+descr_functor = general_fetch_task
+fetch_func = %=setup_fetch_task(bar_dolg_medic_task_2_fetch:kolobok:1:1)%
+status_functor = actor_has_fetch_item
+target_functor = general_fetch_task
+condlist_0 = {!task_giver_alive(bar_dolg_medic_task_2)} fail
+
+on_complete = %=complete_task_inc_goodwill(80:dolg) =fetch_reward_and_remove(bar_dolg_medic_task_2_fetch:0.1) =reward_item(medkit_ai1) =inc_task_stage(bar_dolg_medic_task_2)%
+on_fail = %=fail_task_dec_goodwill(40:dolg)%
