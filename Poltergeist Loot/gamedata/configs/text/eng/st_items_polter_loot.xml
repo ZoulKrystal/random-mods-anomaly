@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+	<string id="st_hide_poltergeist">
+		<text>Poltergeist skin</text>
+	</string>
+	<string id="st_hide_poltergeist_descr">
+		<text>Who would have thought that something akin to a ball of electricity could be skinned. The skin from a poltergeist is rather heavy, rough and dry in touch, making it uncomfortable to wear. Even though the creature is dead, its skin still emits a small field, thus stopping moderate amounts of physical damage, while also making the wearer more vulnerable to heat and electrical currents.\n \n
+		%c[ui_gray_2]PROPERTIES:\n
+		%c[d_cyan] • %c[ui_gray_2] medium mutant pelt\n
+		%c[d_cyan] • %c[ui_gray_2] valuable \n
+		%c[d_cyan] • %c[ui_gray_2] effectiveness of mult. units is stackable\n
+		</text>
+	</string>
+</string_table>
