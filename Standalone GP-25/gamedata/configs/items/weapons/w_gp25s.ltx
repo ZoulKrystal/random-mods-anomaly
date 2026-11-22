@@ -1,0 +1,188 @@
+;------------------------------------------------------------------------------------------------
+[wpn_gp25s]:zero_immunities,weapon_probability,default_weapon_params,wpn_m79_sounds
+		kind = w_explosive
+        GroupControlSection         = spawn_group
+        discovery_dependency        =
+        $npc                        = on
+        $prefetch                   = 2
+        $spawn                      = "weapons\gp25s"
+        scheduled                   = off
+        cform                       = skeleton
+        
+        class                       = WP_RG6
+        slot                        = 2
+        animation_slot              = 8
+        ef_main_weapon_type         = 4
+        ef_weapon_type              = 12
+        hand_dependence             = 1
+        single_handed               = 0
+        
+        sprint_allowed              = true
+        
+        icons_texture		        = ui\ui_wpn_gp25s
+        inv_grid_width              = 3
+        inv_grid_height             = 1
+        inv_grid_x                  = 0
+        inv_grid_y                  = 0
+
+        upgr_icon_path              = ui\ui_wpn_gp25s
+        upgr_icon_x                 = 0
+        upgr_icon_y                 = 50
+        upgr_icon_width             = 150
+        upgr_icon_height            = 100
+
+        inv_name                    = st_wpn_gp25s
+        inv_name_short              = st_wpn_gp25s_s
+        description                 = st_wpn_gp25s_descr
+        
+        inv_weight                  = 2.3
+        cost                        = 22420
+        weapon_class                = heavy_weapon
+        
+        hud                         = wpn_gp25s_hud
+        visual                      = dynamics\weapons\wpn_gp25s\wpn_gp25s.ogf
+        position                    = -0.02, -0.035, -0.295
+        orientation                 = 1.5, 9, 5
+        fire_point                  = 0, -0.015, 0.52
+        fire_point2                 = 0, -0.015, 0.52
+        strap_bone0                 = bip01_spine2
+        strap_bone1                 = bip01_spine1
+        strap_position              = -0.24, -0.13, 0
+        strap_orientation           = -15, -9, 110
+        ph_mass                     = 3
+        
+        flame_particles             = weapons\generic_weapon05
+        smoke_particles             = amik\weapons\smoke_particles\smoke_particles_pump_01
+        
+		shell_point				    = 0, 0, 0
+
+        light_color                 = 0.6, 0.5, 0.3
+        light_range                 = 6.0
+        light_time                  = 0.2
+        light_var_color             = 0.05
+        light_var_range             = 0.5
+
+        tri_state_reload            = on
+        ammo_class                  = ammo_vog-25, ammo_vog-25_bad, ammo_vog-25_verybad
+        ammo_current                = 60
+        ammo_elapsed                = 0
+        ammo_limit                  = 60
+        ammo_mag_size               = 1
+        startup_ammo                = 0
+        
+        scope_status                = 0
+        scope_zoom_factor           = 0
+        
+        silencer_status             = 0
+        
+        grenade_launcher_status     = 0
+        launch_speed                = 76
+        
+        hit_impulse                 = 150
+        hit_power                   = 0.75, 0.75, 0.75, 0.75
+        hit_type                    = fire_wound
+        fire_distance               = 500
+        bullet_speed                = 76
+        rpm                         = 200
+        rpm_empty_click             = 200
+        
+        zoom_dof                    = 0.5, 1.0, 180
+        zoom_enabled                = true
+        reload_dof                  = 0.0, 0.5, 5, 1.3
+        control_inertion_factor     = 1.0f
+        crosshair_inertion          = 8.3
+        fire_dispersion_base        = 0.76
+        fire_dispersion_condition_factor = 0.001
+        
+        misfire_probability         = 0.0
+        misfire_start_condition     = 0.0
+        misfire_start_prob          = 0.0
+        misfire_end_condition       = 0.0
+        misfire_end_prob            = 0.0
+        
+        condition_queue_shot_dec    = 0.013
+        condition_shot_dec          = 0.013
+        
+        cam_relax_speed             = 7.0
+        cam_dispersion              = 3.02
+        cam_dispersion_frac         = 0.1
+        cam_dispersion_inc          = 3.02
+        cam_max_angle               = 50
+        cam_max_angle_horz          = 50
+        cam_step_angle_horz         = 3.9
+        
+        PDM_disp_accel_factor       = 2.9
+        PDM_disp_base               = 0.95
+        PDM_disp_crouch             = 1.0
+        PDM_disp_crouch_no_acc      = 1.0
+        PDM_disp_vel_factor         = 2.9
+        
+        cam_relax_speed_ai          = 360
+        holder_fov_modifier         = 1.0
+        holder_range_modifier       = 1.0
+        min_radius                  = 0
+        max_radius                  = 500
+        hit_probability_gd_novice   = 1.00
+        hit_probability_gd_stalker  = 1.00
+        hit_probability_gd_veteran  = 1.00
+        hit_probability_gd_master   = 1.00
+        
+        kill_msg_x                  = 0
+        kill_msg_y                  = 172
+        kill_msg_width              = 68
+        kill_msg_height             = 30
+
+        snd_add_cartridge = weapons\librarian_ak74\gl_reload
+ 
+
+[wpn_gp25s_hud]:hud_base
+        item_visual                 = anomaly_weapons\wpn_gp25s\wpn_gp25s_hud.ogf
+        attach_place_idx            = 0
+        zoom_hide_crosshair         = true
+        
+        item_position               = 0, 0, 0
+        item_orientation            = 0, 0, 0
+        
+        hands_position              = 0.01, 0.0225, -0.16
+        hands_position_16x9         = 0.01, 0.0225, -0.16
+        hands_orientation           = 0, -2.5, -18
+        hands_orientation_16x9      = 0, -2.5, -18
+        
+        aim_hud_offset_pos               = -0.027352, 0.022818, -0.02
+        aim_hud_offset_pos_16x9          = -0.027352, 0.022818, -0.02
+        aim_hud_offset_rot               = -0.007171, 0.05467, -0.064001
+        aim_hud_offset_rot_16x9          = -0.007171, 0.05467, -0.064001
+
+        lowered_hud_offset_pos           = 0.09, 0.01, 0
+        lowered_hud_offset_pos_16x9      = 0.09, 0.01, 0
+        lowered_hud_offset_rot           = 0.2, -0.8, 0.1
+        lowered_hud_offset_rot_16x9      = 0.2, -0.8, 0.1
+        
+        gl_hud_offset_pos           = 0, 0, 0
+        gl_hud_offset_rot           = 0, 0, 0
+        
+        lean_hud_offset_pos         = 0, 0, 0
+        lean_hud_offset_rot         = 0, 0, 0
+        
+        anm_show                    = gp25s_hand_draw, idle
+        anm_hide                    = gp25s_hand_holster, idle
+        anm_idle                    = gp25s_hand_idle, idle
+        anm_idle_aim                = gp25s_hand_idle_aim, idle
+        anm_idle_moving             = gp25s_hand_moving, idle
+        anm_idle_moving_crouch      = gp25s_hand_moving, idle, 0.75
+        anm_idle_sprint             = gp25s_hand_sprint, idle
+        anm_shots                   = gp25s_hand_shoot, shoot
+        ;anm_reload                  = gp25s_hand_reload, reload
+        ;anm_reload_empty            = gp25s_hand_reload, reload
+        ; why
+        anm_open                    = gp25s_hand_no_reload, idle
+        anm_add_cartridge           = gp25s_hand_reload, reload
+        anm_close                   = gp25s_hand_no_reload, idle
+        
+        shell_bone                  = wpn_body
+        shell_point                 = 0, 0, 0
+        
+        fire_bone                   = muzzle_gl
+        fire_point                  = 0, 0, 0
+ 
+		freelook_z_offset_mul		= 0.3

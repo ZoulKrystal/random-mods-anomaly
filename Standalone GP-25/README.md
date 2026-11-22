@@ -1,0 +1,2 @@
+Animations from: https://www.moddb.com/mods/stalker-anomaly/addons/ak-reanimation-moddb-release
+Requires Heffy's AK textures, get it from Nickolas' AK reanimation mod or https://www.moddb.com/mods/stalker-anomaly/addons/ak-family-retexture

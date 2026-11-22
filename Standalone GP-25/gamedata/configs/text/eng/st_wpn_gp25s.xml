@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+	<string id="st_wpn_gp25s">
+		<text>Standalone GP-25</text>
+	</string>
+	<string id="st_wpn_gp25s_s">
+		<text>GP-25</text>
+	</string>
+	<string id="st_wpn_gp25s_descr">
+		<text>God has abandoned us.\n</text>
+	</string>
+</string_table>
